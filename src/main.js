@@ -29,7 +29,7 @@ import {renderDashboard} from './views/dashboard'
 import {cleanSvgCover, makePdfApiParams} from './aiPdf';
 
 import {svgStyle, pdfStyle, logoStyle} from './vizStyles'
-import {poemFile} from 'settings'
+import {appDir, poemFile} from 'settings'
 
 /**
  * fix the sticky :hover style on touch devices
@@ -198,7 +198,7 @@ function startAI(json) {
     bodyStyles: makeBodyStylesDriver(),
     DOM: makeDOMDriver('#app', { modules: [StyleModule, PropsModule, AttrsModule, ClassModule], }),
     History: makeHistoryDriver({
-        // basename: '/poeme'
+        basename: appDir
       }),
     HTTP: makeHTTPDriver(),
     storage: storageDriver,

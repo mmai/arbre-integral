@@ -17,10 +17,10 @@ export function renderDashboard(showDashboard, isUpside, history, progressionVtr
             h("li", [
               buttonForList("historyList", "History"),
               h('ul#historyList', history.map(url =>
-                h(`li.${isUp(url)?'ai-up':'ai-down'}`, [ h(`a`, {attrs: {href: `/${url.id}`}}, `${url.word} (${url.id})`) ])
+                h(`li.${isUp(url)?'ai-up':'ai-down'}`, [ h(`a`, {attrs: {href: `${url.id}`}}, `${url.word} (${url.id})`) ])
               ))
             ]),
-            h("li", [h("a", {attrs:{href: "/reset"}}, "Restart")]),
+            h("li", [h("a", {attrs:{href: "reset"}}, "Restart")]),
             h("li", [h("a", {attrs:{rel: "external", href: "http://github.com/mmai/arbre-integral"}}, "Source code")]),
           ]),
       ])
