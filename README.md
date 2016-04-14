@@ -4,7 +4,7 @@ This repository hosts the source code of [L'Arbre Intégral](http://arbre-integr
 
 Made with [Cycle.js](http://cyclejs.org) with a [Wordpress](http://wordpress.org) backend.
 
-A demo of the interface, without the backend administration, is available here [https://mmai.github.io/arbre-integral]
+A demo of the interface, without the backend administration, is available here https://mmai.github.io/arbre-integral
 The text of the poem is not available in this repository and has been replaced by random Shakespeare verses.
 
 ## Poem architecture 
@@ -25,7 +25,7 @@ When the reader is on a node of the third level, the map may rotate so that the 
 ## Code structure
 
 * `src` javascript sources of the main app, a Cycle.js single page application for exploring the poem and its visualizations.
-Poem contents are stored in the `shakespeare.json` JSON file. This file name is defined in the src/setting.xxx.js file.
+* Poem contents are stored in the `shakespeare.json` JSON file. This file name is defined in the  `src/setting.xxx.js` file.
 
 ## Running
 
