@@ -120,6 +120,7 @@ class UpdraftPlus_Admin {
 			$next_scheduled_backup_gmt = gmdate('Y-m-d H:i:s', $next_scheduled_backup);
 			// Convert to blog time zone
 			$next_scheduled_backup = get_date_from_gmt($next_scheduled_backup_gmt, 'D, F j, Y H:i');
+// 			$next_scheduled_backup = date_i18n('D, F j, Y H:i', $next_scheduled_backup);
 		} else {
 			$next_scheduled_backup = __('Nothing currently scheduled', 'updraftplus');
 			$files_not_scheduled = true;
@@ -132,6 +133,7 @@ class UpdraftPlus_Admin {
 				$database_not_scheduled = true;
 			} else {
 				$next_scheduled_backup_database = __("At the same time as the files backup", 'updraftplus');
+				$next_scheduled_backup_database_same_time = true;
 			}
 		} else {
 			if ($next_scheduled_backup_database) {
@@ -139,26 +141,27 @@ class UpdraftPlus_Admin {
 				$next_scheduled_backup_database_gmt = gmdate('Y-m-d H:i:s', $next_scheduled_backup_database);
 				// Convert to blog time zone
 				$next_scheduled_backup_database = get_date_from_gmt($next_scheduled_backup_database_gmt, 'D, F j, Y H:i');
+// 				$next_scheduled_backup_database = date_i18n('D, F j, Y H:i', $next_scheduled_backup_database);
 			} else {
 				$next_scheduled_backup_database = __('Nothing currently scheduled', 'updraftplus');
 				$database_not_scheduled = true;
 			}
 		}
-		$current_time = get_date_from_gmt(gmdate('Y-m-d H:i:s'), 'D, F j, Y H:i');
 		?>
 		<tr>
 		<?php if (isset($files_not_scheduled) && isset($database_not_scheduled)) { ?>
 			<td colspan="2" class="not-scheduled"><?php _e('Nothing currently scheduled','updraftplus'); ?></td>
-			<?php } else { ?>
-				<td class="updraft_scheduled"><?php _e('Files','updraftplus'); ?>:</td><td class="updraft_all-files"><?php echo $next_scheduled_backup; ?></td>
-				</tr><tr>
-				<td class="updraft_scheduled"><?php _e('Database','updraftplus');?>: </td><td class="updraft_all-files"><?php echo $next_scheduled_backup_database; ?></td>
-				</tr><tr>
-				<td class="updraft_scheduled"><?php _e('Time now','updraftplus');?>: </td><td class="updraft_all-files"><?php echo $current_time; ?></td>
-			<?php
-			}
+		<?php } else { ?>
+			<td class="updraft_scheduled"><?php echo empty($next_scheduled_backup_database_same_time) ? __('Files','updraftplus') : __('Files and database', 'updraftplus'); ?>:</td><td class="updraft_all-files"><?php echo $next_scheduled_backup; ?></td>
+			</tr>
+			<?php if (empty($next_scheduled_backup_database_same_time)) { ?>
+				<tr>
+					<td class="updraft_scheduled"><?php _e('Database','updraftplus');?>: </td><td class="updraft_all-files"><?php echo $next_scheduled_backup_database; ?></td>
+				</tr>
+			<?php } ?>
+		<?php
+		}
 	}
-	
 	
 	private function admin_init() {
 
@@ -218,7 +221,6 @@ class UpdraftPlus_Admin {
 		$this->setup_all_admin_notices_udonly($service);
 		
 		add_action('admin_enqueue_scripts', array($this, 'admin_enqueue_scripts'), 99999);
-
 	}
 
 	public function updraft_ajaxrestore() {
@@ -439,10 +441,6 @@ class UpdraftPlus_Admin {
 		
 		wp_enqueue_script('jquery-blockui', UPDRAFTPLUS_URL.'/includes/jquery.blockUI.js', array('jquery'), '2.70.0');
 	
-		$selectric_file = @constant('SCRIPT_DEBUG') ? 'jquery.selectric.js' : 'jquery.selectric.min.js';
-		wp_enqueue_script('selectric', UPDRAFTPLUS_URL."/includes/selectric/$selectric_file", array('jquery'), '1.9.3');
-		wp_enqueue_style('selectric', UPDRAFTPLUS_URL.'/includes/selectric/selectric.css', array(), '1.9.3');
-
 		wp_enqueue_script('jquery-labelauty', UPDRAFTPLUS_URL.'/includes/labelauty/jquery-labelauty.js', array('jquery'), '20150925');
 		wp_enqueue_style('jquery-labelauty', UPDRAFTPLUS_URL.'/includes/labelauty/jquery-labelauty.css', array(), '20150925'); 
 
@@ -462,7 +460,7 @@ class UpdraftPlus_Admin {
 			$mday_selector .= "\n\t<option value='" . $mday_index . "' $selected>" . $mday_index . '</option>';
 		}
 
-		wp_localize_script( 'updraftplus-admin-ui', 'updraftlion', array(
+		wp_localize_script('updraftplus-admin-ui', 'updraftlion', array(
 			'sendonlyonwarnings' => __('Send a report only when there are warnings/errors', 'updraftplus'),
 			'wholebackup' => __('When the Email storage method is enabled, also send the entire backup', 'updraftplus'),
 			'emailsizelimits' => esc_attr(sprintf(__('Be aware that mail servers tend to have size limits; typically around %s Mb; backups larger than any limits will likely not arrive.','updraftplus'), '10-20')),
@@ -547,15 +545,19 @@ class UpdraftPlus_Admin {
 			'unsavedsettingsbackup' => __('You have made changes to your settings, and not saved.', 'updraftplus')."\n".__('You should save your changes to ensure that they are used for making your backup.','updraftplus'),
 			'dayselector' => $day_selector,
 			'mdayselector' => $mday_selector,
-			'ud_url' => UPDRAFTPLUS_URL,
 			'day' => __('day', 'updraftplus'),
 			'inthemonth' => __('in the month', 'updraftplus'),
 			'days' => __('day(s)', 'updraftplus'),
 			'hours' => __('hour(s)', 'updraftplus'),
 			'weeks' => __('week(s)', 'updraftplus'),
 			'forbackupsolderthan' => __('For backups older than', 'updraftplus'),
+			'ud_url' => UPDRAFTPLUS_URL,
 			'processing' => __('Processing...', 'updraftplus'),
 			'pleasefillinrequired' => __('Please fill in the required information.', 'updraftplus'),
+			'test_settings' => __('Test %s Settings', 'updraftplus'),
+			'testing_settings' => __('Testing %s Settings...', 'updraftplus'),
+			'settings_test_result' => __('%s settings test result:', 'updraftplus'),
+			'nothing_yet_logged' => __('Nothing yet logged', 'updraftplus'),
 		) );
 	}
 
@@ -678,33 +680,8 @@ class UpdraftPlus_Admin {
 		</script>
 		<?php
 
-		$this->render_admin_css();
-
 	}
 
-	public function render_admin_css() {
-		$images_dir = UPDRAFTPLUS_URL.'/images/icons';
-		?>
-		<style type="text/css">
-		.selectric-items .ico-updraftvault{ background: url(<?php echo $images_dir; ?>/updraftvault.png) no-repeat; }
-		.selectric-items .ico-dropbox { background: url(<?php echo $images_dir; ?>/dropbox.png) no-repeat; }
-		.selectric-items .ico-s3 { background: url(<?php echo $images_dir; ?>/s3.png) no-repeat; }
-		.selectric-items .ico-cloudfiles { background: url(<?php echo $images_dir; ?>/cloudfiles.png) no-repeat; }
-		.selectric-items .ico-googledrive { background: url(<?php echo $images_dir; ?>/googledrive.png) no-repeat; }
-		.selectric-items .ico-onedrive { background: url(<?php echo $images_dir; ?>/onedrive.png) no-repeat; }
-		.selectric-items .ico-azure { background: url(<?php echo $images_dir; ?>/azure.png) no-repeat; }
-		.selectric-items .ico-ftp { background: url(<?php echo $images_dir; ?>/folder.png) no-repeat; }
-		.selectric-items .ico-copycom { background: url(<?php echo $images_dir; ?>/copycom.png) no-repeat; }
-		.selectric-items .ico-sftp { background: url(<?php echo $images_dir; ?>/folder.png) no-repeat; }
-		.selectric-items .ico-webdav { background: url(<?php echo $images_dir; ?>/webdav.png) no-repeat; }
-		.selectric-items .ico-s3generic { background: url(<?php echo $images_dir; ?>/folder.png) no-repeat; }
-		.selectric-items .ico-googlecloud { background: url(<?php echo $images_dir; ?>/googlecloud.png) no-repeat; }
-		.selectric-items .ico-openstack { background: url(<?php echo $images_dir; ?>/openstack.png) no-repeat; }
-		.selectric-items .ico-dreamobjects { background: url(<?php echo $images_dir; ?>/dreamobjects.png) no-repeat; }
-		.selectric-items .ico-email { background: url(<?php echo $images_dir; ?>/email.png) no-repeat; }
-		</style>
-	<?php
-	}
 
 	private function disk_space_check($space) {
 		global $updraftplus;
@@ -785,7 +762,7 @@ class UpdraftPlus_Admin {
 	}
 
 	public function show_admin_warning_diskspace() {
-		$this->show_admin_warning('<strong>'.__('Warning','updraftplus').':</strong> '.sprintf(__('You have less than %s of free disk space on the disk which UpdraftPlus is configured to use to create backups. UpdraftPlus could well run out of space. Contact your the operator of your server (e.g. your web hosting company) to resolve this issue.','updraftplus'),'35 Mb'));
+		$this->show_admin_warning('<strong>'.__('Warning','updraftplus').':</strong> '.sprintf(__('You have less than %s of free disk space on the disk which UpdraftPlus is configured to use to create backups. UpdraftPlus could well run out of space. Contact your the operator of your server (e.g. your web hosting company) to resolve this issue.','updraftplus'),'35 MB'));
 	}
 
 	public function show_admin_warning_wordpressversion() {
@@ -808,19 +785,19 @@ class UpdraftPlus_Admin {
 	}
 
 	public function show_admin_warning_dropbox() {
-		$this->show_admin_warning('<strong>'.__('UpdraftPlus notice:','updraftplus').'</strong> <a href="'.UpdraftPlus_Options::admin_page_url().'?page=updraftplus&action=updraftmethod-dropbox-auth&updraftplus_dropboxauth=doit">'.sprintf(__('Click here to authenticate your %s account (you will not be able to back up to %s without it).','updraftplus'), 'Dropbox', 'Dropbox').'</a>');
+		$this->show_admin_warning('<strong>'.__('UpdraftPlus notice:','updraftplus').'</strong> <a class="updraft_authlink" href="'.UpdraftPlus_Options::admin_page_url().'?page=updraftplus&action=updraftmethod-dropbox-auth&updraftplus_dropboxauth=doit">'.sprintf(__('Click here to authenticate your %s account (you will not be able to back up to %s without it).','updraftplus'), 'Dropbox', 'Dropbox').'</a>');
 	}
 
 	public function show_admin_warning_bitcasa() {
-		$this->show_admin_warning('<strong>'.__('UpdraftPlus notice:','updraftplus').'</strong> <a href="'.UpdraftPlus_Options::admin_page_url().'?page=updraftplus&action=updraftmethod-bitcasa-auth&updraftplus_bitcasaauth=doit">'.sprintf(__('Click here to authenticate your %s account (you will not be able to back up to %s without it).','updraftplus'), 'Bitcasa', 'Bitcasa').'</a>');
+		$this->show_admin_warning('<strong>'.__('UpdraftPlus notice:','updraftplus').'</strong> <a class="updraft_authlink" href="'.UpdraftPlus_Options::admin_page_url().'?page=updraftplus&action=updraftmethod-bitcasa-auth&updraftplus_bitcasaauth=doit">'.sprintf(__('Click here to authenticate your %s account (you will not be able to back up to %s without it).','updraftplus'), 'Bitcasa', 'Bitcasa').'</a>');
 	}
 
 	public function show_admin_warning_copycom() {
-		$this->show_admin_warning('<strong>'.__('UpdraftPlus notice:','updraftplus').'</strong> <a href="'.UpdraftPlus_Options::admin_page_url().'?page=updraftplus&action=updraftmethod-copycom-auth&updraftplus_copycomauth=doit">'.sprintf(__('Click here to authenticate your %s account (you will not be able to back up to %s without it).','updraftplus'), 'Copy.Com', 'Copy').'</a>');
+		$this->show_admin_warning('<strong>'.__('UpdraftPlus notice:','updraftplus').'</strong> <a class="updraft_authlink" href="'.UpdraftPlus_Options::admin_page_url().'?page=updraftplus&action=updraftmethod-copycom-auth&updraftplus_copycomauth=doit">'.sprintf(__('Click here to authenticate your %s account (you will not be able to back up to %s without it).','updraftplus'), 'Copy.Com', 'Copy').'</a>');
 	}
 
 	public function show_admin_warning_onedrive() {
-	$this->show_admin_warning('<strong>'.__('UpdraftPlus notice:','updraftplus').'</strong> <a href="'.UpdraftPlus_Options::admin_page_url().'?page=updraftplus&action=updraftmethod-onedrive-auth&updraftplus_onedriveauth=doit">'.sprintf(__('Click here to authenticate your %s account (you will not be able to back up to %s without it).','updraftplus'), 'OneDrive', 'OneDrive').'</a>');
+	$this->show_admin_warning('<strong>'.__('UpdraftPlus notice:','updraftplus').'</strong> <a class="updraft_authlink" href="'.UpdraftPlus_Options::admin_page_url().'?page=updraftplus&action=updraftmethod-onedrive-auth&updraftplus_onedriveauth=doit">'.sprintf(__('Click here to authenticate your %s account (you will not be able to back up to %s without it).','updraftplus'), 'OneDrive', 'OneDrive').'</a>');
 	}
 
 	public function show_admin_warning_updraftvault() {
@@ -828,11 +805,11 @@ class UpdraftPlus_Admin {
 	}
 
 	public function show_admin_warning_googledrive() {
-		$this->show_admin_warning('<strong>'.__('UpdraftPlus notice:','updraftplus').'</strong> <a href="'.UpdraftPlus_Options::admin_page_url().'?page=updraftplus&action=updraftmethod-googledrive-auth&updraftplus_googleauth=doit">'.sprintf(__('Click here to authenticate your %s account (you will not be able to back up to %s without it).','updraftplus'), 'Google Drive', 'Google Drive').'</a>');
+		$this->show_admin_warning('<strong>'.__('UpdraftPlus notice:','updraftplus').'</strong> <a class="updraft_authlink" href="'.UpdraftPlus_Options::admin_page_url().'?page=updraftplus&action=updraftmethod-googledrive-auth&updraftplus_googleauth=doit">'.sprintf(__('Click here to authenticate your %s account (you will not be able to back up to %s without it).','updraftplus'), 'Google Drive', 'Google Drive').'</a>');
 	}
 
 	public function show_admin_warning_googlecloud() {
-		$this->show_admin_warning('<strong>'.__('UpdraftPlus notice:','updraftplus').'</strong> <a href="'.UpdraftPlus_Options::admin_page_url().'?page=updraftplus&action=updraftmethod-googlecloud-auth&updraftplus_googleauth=doit">'.sprintf(__('Click here to authenticate your %s account (you will not be able to back up to %s without it).','updraftplus'), 'Google Cloud', 'Google Cloud').'</a>');
+		$this->show_admin_warning('<strong>'.__('UpdraftPlus notice:','updraftplus').'</strong> <a class="updraft_authlink" href="'.UpdraftPlus_Options::admin_page_url().'?page=updraftplus&action=updraftmethod-googlecloud-auth&updraftplus_googleauth=doit">'.sprintf(__('Click here to authenticate your %s account (you will not be able to back up to %s without it).','updraftplus'), 'Google Cloud', 'Google Cloud').'</a>');
 	}
 
 
@@ -950,7 +927,7 @@ class UpdraftPlus_Admin {
 			$updraftplus->log("The file was found locally (".filesize($fullpath).") but did not match the size in the backup history ($known_size) - will resume downloading");
 			$needs_downloading = true;
 		} elseif ($known_size > 0) {
-			$updraftplus->log('The file was found locally and matched the recorded size from the backup history ('.round($known_size/1024,1).' Kb)');
+			$updraftplus->log('The file was found locally and matched the recorded size from the backup history ('.round($known_size/1024,1).' KB)');
 		} else {
 			$updraftplus->log('No file size was found recorded in the backup history. We will assume the local one is complete.');
 			$known_size = filesize($fullpath);
@@ -978,7 +955,7 @@ class UpdraftPlus_Admin {
 				$download = $this->download_file($file, $service);
 				if (is_readable($fullpath) && $download !== false) {
 					clearstatcache();
-					$updraftplus->log('Remote fetch was successful (file size: '.round(filesize($fullpath)/1024,1).' Kb)');
+					$updraftplus->log('Remote fetch was successful (file size: '.round(filesize($fullpath)/1024,1).' KB)');
 					$is_downloaded = true;
 				} else {
 					clearstatcache();
@@ -1058,9 +1035,17 @@ class UpdraftPlus_Admin {
 		}
 
 		// Some of this checks that _REQUEST['subaction'] is set, which is redundant (done already in the nonce check)
+		/*
+		// This one is no longer used anywhere
 		if (isset($_REQUEST['subaction']) && 'lastlog' == $_REQUEST['subaction']) {
-			echo htmlspecialchars(UpdraftPlus_Options::get_updraft_option('updraft_lastmessage', '('.__('Nothing yet logged', 'updraftplus').')'));
-		} elseif ('forcescheduledresumption' == $_REQUEST['subaction'] && !empty($_REQUEST['resumption']) && !empty($_REQUEST['job_id']) && is_numeric($_REQUEST['resumption'])) {
+		
+			$last_message = UpdraftPlus_Options::get_updraft_option('updraft_lastmessage');
+		
+			echo htmlspecialchars( '('.__('Nothing yet logged', 'updraftplus').')'));
+			
+		} else
+		*/
+		if ('forcescheduledresumption' == $_REQUEST['subaction'] && !empty($_REQUEST['resumption']) && !empty($_REQUEST['job_id']) && is_numeric($_REQUEST['resumption'])) {
 			// Casting $resumption to int is absolutely necessary, as the WP cron system uses a hashed serialisation of the parameters for identifying jobs. Different type => different hash => does not match
 			$resumption = (int)$_REQUEST['resumption'];
 			$job_id = $_REQUEST['job_id'];
@@ -1251,7 +1236,7 @@ class UpdraftPlus_Admin {
 			}
 
 			$mess = array();
-			parse_str($_REQUEST['restoreopts'], $res);
+			parse_str(stripslashes($_REQUEST['restoreopts']), $res);
 
 			if (isset($res['updraft_restore'])) {
 
@@ -1273,6 +1258,7 @@ class UpdraftPlus_Admin {
 				}
 
 				if (isset($elements['db'])) {
+				
 					// Analyse the header of the database file + display results
 					list ($mess2, $warn2, $err2, $info) = $updraftplus->analyse_db_file($timestamp, $res);
 					$mess = array_merge($mess, $mess2);
@@ -1484,28 +1470,41 @@ class UpdraftPlus_Admin {
 			echo @json_encode($history_status);
 
 		} elseif (isset($_POST['subaction']) && $_POST['subaction'] == 'credentials_test') {
-			$method = (preg_match("/^[a-z0-9]+$/", $_POST['method'])) ? $_POST['method'] : "";
+		
+			$this->do_credentials_test($_POST);
+			die;
 
-			require_once(UPDRAFTPLUS_DIR."/methods/$method.php");
-			$objname = "UpdraftPlus_BackupModule_$method";
-
-			$this->logged = array();
-			# TODO: Add action for WP HTTP SSL stuff
-			set_error_handler(array($this, 'get_php_errors'), E_ALL & ~E_STRICT);
-			if (method_exists($objname, "credentials_test")) {
-				$obj = new $objname;
-				$obj->credentials_test();
-			}
-			if (count($this->logged) >0) {
-				echo "\n\n".__('Messages:', 'updraftplus')."\n";
-				foreach ($this->logged as $err) {
-					echo "* $err\n";
-				}
-			}
-			restore_error_handler();
 		}
 		die;
 
+	}
+	
+	// This echoes output; so, you will need to do output buffering if you want to capture it
+	public function do_credentials_test($test_settings) {
+	
+		$method = (!empty($test_settings['method']) && preg_match("/^[a-z0-9]+$/", $test_settings['method'])) ? $test_settings['method'] : "";
+		
+		$objname = "UpdraftPlus_BackupModule_$method";
+		
+		$this->logged = array();
+		# TODO: Add action for WP HTTP SSL stuff
+		set_error_handler(array($this, 'get_php_errors'), E_ALL & ~E_STRICT);
+		
+		if (!class_exists($objname)) include_once(UPDRAFTPLUS_DIR."/methods/$method.php");
+
+		# TODO: Add action for WP HTTP SSL stuff
+		if (method_exists($objname, "credentials_test")) {
+			$obj = new $objname;
+			$obj->credentials_test($test_settings);
+		}
+		
+		if (count($this->logged) >0) {
+			echo "\n\n".__('Messages:', 'updraftplus')."\n";
+			foreach ($this->logged as $err) {
+				echo "* $err\n";
+			}
+		}
+		restore_error_handler();
 	}
 	
 	// Relevant options (array keys): backup_timestamp, delete_remote, 
@@ -1647,10 +1646,18 @@ class UpdraftPlus_Admin {
 			$output = $noutput.$output;
 		}
 		
-		return array(
+		$logs_exist = (false !== strpos($output, 'downloadlog'));
+		if (!$logs_exist) {
+			list($mod_time, $log_file, $nonce) = $updraftplus->last_modified_log();
+			if ($mod_time) $logs_exist = true;
+		}
+		
+		return apply_filters('updraftplus_get_history_status_result', array(
 			'n' => sprintf(__('Existing Backups', 'updraftplus').' (%d)', count($backup_history)),
-			't' => $output, 'cksum' => md5($output)
-		);
+			't' => $output,
+			'cksum' => md5($output),
+			'logs_exist' => $logs_exist,
+		));
 	}
 	
 	public function get_disk_space_used($entity) {
@@ -1760,7 +1767,8 @@ class UpdraftPlus_Admin {
 		}
 
 		return array(
-			'l' => htmlspecialchars(UpdraftPlus_Options::get_updraft_option('updraft_lastmessage', '('.__('Nothing yet logged', 'updraftplus').')')),
+			// We allow the front-end to decide what to do if there's nothing logged - we used to (up to 1.11.29) send a pre-defined message
+			'l' => htmlspecialchars(UpdraftPlus_Options::get_updraft_option('updraft_lastmessage', '')),
 			'j' => $active_jobs,
 			'ds' => $download_status,
 			'u' => $logupdate_array
@@ -1874,7 +1882,7 @@ class UpdraftPlus_Admin {
 		global $updraftplus;
 		if (0 == error_reporting()) return true;
 		$logline = $updraftplus->php_error_to_logline($errno, $errstr, $errfile, $errline);
-		$this->logged[] = $logline;
+		if (false !== $logline) $this->logged[] = $logline;
 		# Don't pass it up the chain (since it's going to be output to the user always)
 		return true;
 	}
@@ -1913,7 +1921,7 @@ class UpdraftPlus_Admin {
 				$file_age = time() - filemtime($matches[2]);
 				if ($file_age > 20) $response['a'] = time() - filemtime($matches[2]);
 				$response['t'] = $total_size;
-				$response['m'] .= __("Download in progress", 'updraftplus').' ('.round($cur_size/1024).' / '.round(($total_size/1024)).' Kb)';
+				$response['m'] .= __("Download in progress", 'updraftplus').' ('.round($cur_size/1024).' / '.round(($total_size/1024)).' KB)';
 				$response['p'] = round(100*$cur_size/$total_size);
 			} else {
 				$response['m'] .= __('No local copy present.', 'updraftplus');
@@ -2347,7 +2355,7 @@ class UpdraftPlus_Admin {
 			if ($ws_advert && empty($success_advert) && empty($this->no_settings_warning)) { echo '<div class="updated ws_advert" style="clear:left;">'.$ws_advert.'</div>'; }
 
 			if (!$updraftplus->memory_check(64)) {?>
-				<div class="updated memory-limit"><?php _e("Your PHP memory limit (set by your web hosting company) is very low. UpdraftPlus attempted to raise it but was unsuccessful. This plugin may struggle with a memory limit of less than 64 Mb  - especially if you have very large files uploaded (though on the other hand, many sites will be successful with a 32Mb limit - your experience may vary).",'updraftplus');?> <?php _e('Current limit is:','updraftplus');?> <?php echo $updraftplus->memory_check_current(); ?> Mb</div>
+				<div class="updated memory-limit"><?php _e("Your PHP memory limit (set by your web hosting company) is very low. UpdraftPlus attempted to raise it but was unsuccessful. This plugin may struggle with a memory limit of less than 64 Mb  - especially if you have very large files uploaded (though on the other hand, many sites will be successful with a 32Mb limit - your experience may vary).",'updraftplus');?> <?php _e('Current limit is:','updraftplus');?> <?php echo $updraftplus->memory_check_current(); ?> MB</div>
 			<?php
 			}
 
@@ -2411,7 +2419,7 @@ class UpdraftPlus_Admin {
 				</noscript>
 
 				<tr>
-					<th><?php _e('Actions', 'updraftplus');?>:</th>
+					<th></th>
 					<td>
 
 					<?php 
@@ -2432,66 +2440,24 @@ class UpdraftPlus_Admin {
 				</tr>
 
 				<?php
-				// UNIX timestamp
-				$next_scheduled_backup = wp_next_scheduled('updraft_backup');
-				if ($next_scheduled_backup) {
-					// Convert to GMT
-					$next_scheduled_backup_gmt = gmdate('Y-m-d H:i:s', $next_scheduled_backup);
-					// Convert to blog time zone
-					$next_scheduled_backup = get_date_from_gmt($next_scheduled_backup_gmt, 'D, F j, Y H:i');
-				} else {
-					$next_scheduled_backup = __('Nothing currently scheduled', 'updraftplus');
-					$files_not_scheduled = true;
-				}
-				
-				$next_scheduled_backup_database = wp_next_scheduled('updraft_backup_database');
-				if (UpdraftPlus_Options::get_updraft_option('updraft_interval_database',UpdraftPlus_Options::get_updraft_option('updraft_interval')) == UpdraftPlus_Options::get_updraft_option('updraft_interval')) {
-					if (isset($files_not_scheduled)) {
-						$next_scheduled_backup_database = $next_scheduled_backup;
-						$database_not_scheduled = true;
-					} else {
-						$next_scheduled_backup_database = __("At the same time as the files backup", 'updraftplus');
-					}
-				} else {
-					if ($next_scheduled_backup_database) {
-						// Convert to GMT
-						$next_scheduled_backup_database_gmt = gmdate('Y-m-d H:i:s', $next_scheduled_backup_database);
-						// Convert to blog time zone
-						$next_scheduled_backup_database = get_date_from_gmt($next_scheduled_backup_database_gmt, 'D, F j, Y H:i');
-					} else {
-						$next_scheduled_backup_database = __('Nothing currently scheduled', 'updraftplus');
-						$database_not_scheduled = true;
-					}
-				}
-				$current_time = get_date_from_gmt(gmdate('Y-m-d H:i:s'), 'D, F j, Y H:i');
-
-				$last_backup_html = $this->last_backup_html();
+					$last_backup_html = $this->last_backup_html(); 
+					$current_time = get_date_from_gmt(gmdate('Y-m-d H:i:s'), 'D, F j, Y H:i');
+// 					$current_time = date_i18n('D, F j, Y H:i');
 
 				?>
 
 				<script>var lastbackup_laststatus = '<?php echo esc_js($last_backup_html);?>';</script>
 
 				<tr>
-					<th><span title="<?php _e('All the times shown in this section are using WordPress\'s configured time zone, which you can set in Settings -> General', 'updraftplus'); ?>"><?php _e('Next scheduled backups', 'updraftplus');?>:</span></th>
+					<th><span title="<?php esc_attr_e("All the times shown in this section are using WordPress's configured time zone, which you can set in Settings -> General", 'updraftplus'); ?>"><?php _e('Next scheduled backups', 'updraftplus');?>:<br>
+					<span style="font-weight:normal;"><em><?php _e('Now', 'updraftplus');?>: <?php echo $current_time; ?></span></span></em></th>
 					<td>
-						<table class="next-backup">
-						<tr>
-						<?php
-							if (isset($files_not_scheduled) && isset($database_not_scheduled)) {
-								?>
-									<td colspan="2" class="not-scheduled"><?php _e('Nothing currently scheduled','updraftplus'); ?></td>
-								<?php
-							} else {
-							?>
-								<td class="updraft_scheduled"><?php _e('Files','updraftplus'); ?>:</td><td class="updraft_all-files"><?php echo $next_scheduled_backup?></td>
-								</tr><tr>
-								<td class="updraft_scheduled"><?php _e('Database','updraftplus');?>: </td><td class="updraft_all-files"><?php echo $next_scheduled_backup_database?></td>
-								</tr><tr>
-								<td class="updraft_scheduled"><?php _e('Time now','updraftplus');?>: </td><td class="updraft_all-files"><?php echo $current_time?></td>
-							<?php } ?>
+						<table id="next-backup-table-inner" class="next-backup">
+							<?php $this->next_scheduled_backups_output(); ?>
 						</table>
 					</td>
 				</tr>
+				
 				<tr>
 					<th><?php _e('Last backup job run:','updraftplus');?></th>
 					<td id="updraft_last_backup"><?php echo $last_backup_html ?></td>
@@ -2518,9 +2484,9 @@ class UpdraftPlus_Admin {
 			</div>
 
 			<div id="updraft-backupnow-modal" title="UpdraftPlus - <?php _e('Perform a one-time backup', 'updraftplus'); ?>">
-				<p>
+<!--				<p>
 					<?php _e("To proceed, press 'Backup Now'. Then, watch the 'Last Log Message' field for activity.", 'updraftplus');?>
-				</p>
+				</p>-->
 
 			<?php echo $this->backupnow_modal_contents(); ?>
 			</div>
@@ -2554,7 +2520,7 @@ class UpdraftPlus_Admin {
 		<div id="updraft-navtab-settings-content" <?php if (3 != $tabflag) echo 'class="updraft-hidden"'; ?> style="<?php if (3 != $tabflag) echo 'display:none;'; ?>">
 			<h2 class="updraft_settings_sectionheading"><?php _e('Backup Contents And Schedule','updraftplus');?></h2>
 			<?php UpdraftPlus_Options::options_form_begin(); ?>
-				<?php $this->settings_formcontents($last_backup_html); ?>
+				<?php $this->settings_formcontents(); ?>
 			</form>
 		</div>
 
@@ -2635,7 +2601,7 @@ class UpdraftPlus_Admin {
 						<td class="updraft_tick_cell"><img src="<?php echo $tick;?>"></td>
 					</tr>
 					<tr>
-						<td class="updraft_feature_cell"><?php _e('Free 1Gb for UpdraftPlus Vault', 'updraftplus');?></td>
+						<td class="updraft_feature_cell"><?php _e('Free 1GB for UpdraftPlus Vault', 'updraftplus');?></td>
 						<td class="updraft_tick_cell"><img src="<?php echo $cross;?>"></td>
 						<td class="updraft_tick_cell"><img src="<?php echo $tick;?>"></td>
 					</tr>
@@ -2768,7 +2734,7 @@ class UpdraftPlus_Admin {
 	
 		$ret = $this->backup_now_widgetry();
 
-		$ret .= '<p>'.__('Does nothing happen when you attempt backups?','updraftplus').' <a href="https://updraftplus.com/faqs/my-scheduled-backups-and-pressing-backup-now-does-nothing-however-pressing-debug-backup-does-produce-a-backup/">'.__('Go here for help.', 'updraftplus').'</a></p>';
+// 		$ret .= '<p>'.__('Does nothing happen when you attempt backups?','updraftplus').' <a href="https://updraftplus.com/faqs/my-scheduled-backups-and-pressing-backup-now-does-nothing-however-pressing-debug-backup-does-produce-a-backup/">'.__('Go here for help.', 'updraftplus').'</a></p>';
 
 		return $ret;
 	}
@@ -2819,13 +2785,13 @@ class UpdraftPlus_Admin {
 						?>
 						<td colspan="2" class="last-message"><strong><?php _e('Last log message','updraftplus');?>:</strong><br>
 							<span id="updraft_lastlogcontainer"><?php echo htmlspecialchars(UpdraftPlus_Options::get_updraft_option('updraft_lastmessage', __('(Nothing yet logged)','updraftplus'))); ?></span><br>
-							<a href="?page=updraftplus&amp;action=downloadlatestmodlog&amp;wpnonce=<?php echo wp_create_nonce('updraftplus_download') ?>" class="updraft-log-link" onclick="event.preventDefault(); updraft_popuplog('');"><?php _e('Download most recently modified log file','updraftplus');?></a>
+							<?php $this->most_recently_modified_log_link(); ?>
 						</td>
 					<?php } else { ?>
 						<th><?php _e('Last log message','updraftplus');?>:</th>
 						<td>
 							<span id="updraft_lastlogcontainer"><?php echo htmlspecialchars(UpdraftPlus_Options::get_updraft_option('updraft_lastmessage', __('(Nothing yet logged)','updraftplus'))); ?></span><br>
-							<a href="?page=updraftplus&amp;action=downloadlatestmodlog&amp;wpnonce=<?php echo wp_create_nonce('updraftplus_download') ?>" class="updraft-log-link" onclick="event.preventDefault(); updraft_popuplog('');"><?php _e('Download most recently modified log file','updraftplus');?></a>
+							<?php $this->most_recently_modified_log_link(); ?>
 						</td>
 					<?php } ?>
 				</tr>
@@ -2853,6 +2819,16 @@ class UpdraftPlus_Admin {
 		<?php
 	}
 
+	private function most_recently_modified_log_link() {
+
+		global $updraftplus;
+		list($mod_time, $log_file, $nonce) = $updraftplus->last_modified_log();
+		
+		?>
+			<a href="?page=updraftplus&amp;action=downloadlatestmodlog&amp;wpnonce=<?php echo wp_create_nonce('updraftplus_download') ?>" <?php if (!$mod_time) echo 'style="display:none;"'; ?> class="updraft-log-link" onclick="event.preventDefault(); updraft_popuplog('');"><?php _e('Download most recently modified log file', 'updraftplus');?></a>
+		<?php
+	}
+	
 	public function settings_downloading_and_restoring($backup_history = array(), $return_result = false, $options = array()) {
 		global $updraftplus;
 		if ($return_result) ob_start();
@@ -3099,7 +3075,10 @@ class UpdraftPlus_Admin {
 				} else {
 					$cvs = __('Not installed', 'updraftplus').' ('.__('required for some remote storage providers', 'updraftplus').')';
 				}
-				$this->settings_debugrow(sprintf(__('%s version:','updraftplus'), 'Curl'), htmlspecialchars($cvs));
+				$this->settings_debugrow(sprintf(__('%s version:', 'updraftplus'), 'Curl'), htmlspecialchars($cvs));
+				$this->settings_debugrow(sprintf(__('%s version:', 'updraftplus'), 'OpenSSL'), defined('OPENSSL_VERSION_TEXT') ? OPENSSL_VERSION_TEXT : '-');
+				$this->settings_debugrow('MCrypt:', function_exists('mcrypt_encrypt') ? __('Yes') : __('No'));
+				
 				if (version_compare(phpversion(), '5.2.0', '>=') && extension_loaded('zip')) {
 					$ziparchive_exists = __('Yes', 'updraftplus');
 				} else {
@@ -3112,7 +3091,7 @@ class UpdraftPlus_Admin {
 				$hosting_bytes_free = $updraftplus->get_hosting_disk_quota_free();
 				if (is_array($hosting_bytes_free)) {
 					$perc = round(100*$hosting_bytes_free[1]/(max($hosting_bytes_free[2], 1)), 1);
-					$this->settings_debugrow(__('Free disk space in account:', 'updraftplus'), sprintf(__('%s (%s used)', 'updraftplus'), round($hosting_bytes_free[3]/1048576, 1)." Mb", "$perc %"));
+					$this->settings_debugrow(__('Free disk space in account:', 'updraftplus'), sprintf(__('%s (%s used)', 'updraftplus'), round($hosting_bytes_free[3]/1048576, 1)." MB", "$perc %"));
 				}
 				
 				$this->settings_debugrow(__('Plugins for debugging:', 'updraftplus'),'<a href="'.wp_nonce_url(self_admin_url('update.php?action=install-plugin&updraftplus_noautobackup=1&plugin=wp-crontrol'), 'install-plugin_wp-crontrol').'">WP Crontrol</a> | <a href="'.wp_nonce_url(self_admin_url('update.php?action=install-plugin&updraftplus_noautobackup=1&plugin=sql-executioner'), 'install-plugin_sql-executioner').'">SQL Executioner</a> | <a href="'.wp_nonce_url(self_admin_url('update.php?action=install-plugin&updraftplus_noautobackup=1&plugin=advanced-code-editor'), 'install-plugin_advanced-code-editor').'">Advanced Code Editor</a> '.(current_user_can('edit_plugins') ? '<a href="'.self_admin_url('plugin-editor.php?file=updraftplus/updraftplus.php').'">(edit UpdraftPlus)</a>' : '').' | <a href="'.wp_nonce_url(self_admin_url('update.php?action=install-plugin&updraftplus_noautobackup=1&plugin=wp-filemanager'), 'install-plugin_wp-filemanager').'">WP Filemanager</a>');
@@ -3238,7 +3217,7 @@ class UpdraftPlus_Admin {
 			$ret = $this->print_active_job($this_job_only);
 			if ('' == $ret) {
 				// The presence of the exact ID matters to the front-end - indicates that the backup job has at least begun
-				$ret = '<div class="active-jobs updraft_finished" id="updraft-jobid-'.$this_job_only.'"><em>'.__('The backup has finished running', 'updraftplus').'</em></div>';
+				$ret = '<div class="active-jobs updraft_finished" id="updraft-jobid-'.$this_job_only.'"><em>'.__('The backup has finished running', 'updraftplus').'</em> - <a class="updraft-log-link" data-jobid="'.$this_job_only.'">'.__('View Log', 'updraftplus').'</a></div>';
 			}
 		}
 
@@ -3609,11 +3588,13 @@ class UpdraftPlus_Admin {
 			$backup_time = (int)$updraft_last_backup['backup_time'];
 
 			$print_time = get_date_from_gmt(gmdate('Y-m-d H:i:s', $backup_time), 'D, F j, Y H:i');
+// 			$print_time = date_i18n('D, F j, Y H:i', $backup_time);
 
 			if (empty($updraft_last_backup['backup_time_incremental'])) {
 				$last_backup_text = "<span style=\"color:".(($updraft_last_backup['success']) ? 'green' : 'black').";\">".$print_time.'</span>';
 			} else {
 				$inc_time = get_date_from_gmt(gmdate('Y-m-d H:i:s', $updraft_last_backup['backup_time_incremental']), 'D, F j, Y H:i');
+// 				$inc_time = date_i18n('D, F j, Y H:i', $updraft_last_backup['backup_time_incremental']);
 				$last_backup_text = "<span style=\"color:".(($updraft_last_backup['success']) ? 'green' : 'black').";\">$inc_time</span> (".sprintf(__('incremental backup; base backup: %s', 'updraftplus'), $print_time).')';
 			}
 
@@ -3674,16 +3655,26 @@ class UpdraftPlus_Admin {
 			} else {
 				$dir_info .= __('Backup directory specified exists, but is <b>not</b> writable.','updraftplus');
 			}
-			$dir_info .= ' <span class="directory-permissions"><a href="'.UpdraftPlus_Options::admin_page_url().'?page=updraftplus&action=updraft_create_backup_dir&nonce='.wp_create_nonce('create_backup_dir').'">'.__('Click here to attempt to create the directory and set the permissions','updraftplus').'</a></span>, '.__('or, to reset this option','updraftplus').' <a href="#" onclick="jQuery(\'#updraft_dir\').val(\'updraft\'); return false;">'.__('click here','updraftplus').'</a>. '.__('If that is unsuccessful check the permissions on your server or change it to another directory that is writable by your web server process.','updraftplus').'</span>';
+			$dir_info .= '<span class="updraft-directory-not-writable-blurb"><span class="directory-permissions"><a class="updraft_create_backup_dir" href="'.UpdraftPlus_Options::admin_page_url().'?page=updraftplus&action=updraft_create_backup_dir&nonce='.wp_create_nonce('create_backup_dir').'">'.__('Click here to attempt to create the directory and set the permissions','updraftplus').'</a></span>, '.__('or, to reset this option','updraftplus').' <a href="#" class="updraft_backup_dir_reset">'.__('click here','updraftplus').'</a>. '.__('If that is unsuccessful check the permissions on your server or change it to another directory that is writable by your web server process.','updraftplus').'</span>';
 		}
 		return $dir_info;
 	}
 
-	private function settings_formcontents($last_backup_html) {
+	public function settings_formcontents($options = array()) {
 
 		global $updraftplus;
 
 		$updraft_dir = $updraftplus->backups_dir_location();
+		$really_is_writable = $updraftplus->really_is_writable($updraft_dir);
+
+		$default_options = array(
+			'include_database_decrypter' => true,
+			'include_adverts' => true,
+			'include_save_button' => true
+		);
+		foreach ($default_options as $k => $v) {
+			if (!isset($options[$k])) $options[$k] = $v;
+		}
 
 		?>
 			<table class="form-table">
@@ -3691,7 +3682,7 @@ class UpdraftPlus_Admin {
 				<th><?php _e('Files backup schedule','updraftplus'); ?>:</th>
 				<td>
 					<div style="float:left; clear:both;">
-						<select id="updraft_interval" name="updraft_interval" onchange="jQuery(document).trigger('updraftplus_interval_changed'); updraft_check_same_times();">
+						<select class="updraft_interval" name="updraft_interval">
 						<?php
 						$intervals = $this->get_intervals();
 						$selected_interval = UpdraftPlus_Options::get_updraft_option('updraft_interval', 'manual');
@@ -3701,7 +3692,7 @@ class UpdraftPlus_Admin {
 							echo ">".htmlspecialchars($descrip)."</option>\n";
 						}
 						?>
-						</select> <span id="updraft_files_timings"><?php echo apply_filters('updraftplus_schedule_showfileopts', '<input type="hidden" name="updraftplus_starttime_files" value="">', $selected_interval); ?></span>
+						</select> <span class="updraft_files_timings"><?php echo apply_filters('updraftplus_schedule_showfileopts', '<input type="hidden" name="updraftplus_starttime_files" value="">', $selected_interval); ?></span>
 					
 
 						<?php
@@ -3720,7 +3711,7 @@ class UpdraftPlus_Admin {
 			</tr>
 
 			<?php if (defined('UPDRAFTPLUS_EXPERIMENTAL') && UPDRAFTPLUS_EXPERIMENTAL) { ?>
-			<tr id="updraft_incremental_row">
+			<tr class="updraft_incremental_row">
 				<th><?php _e('Incremental file backup schedule', 'updraftplus'); ?>:</th>
 				<td>
 					<?php do_action('updraftplus_incremental_cell', $selected_interval); ?>
@@ -3734,7 +3725,7 @@ class UpdraftPlus_Admin {
 				<th><?php _e('Database backup schedule','updraftplus'); ?>:</th>
 				<td>
 				<div style="float:left; clear:both;">
-					<select id="updraft_interval_database" name="updraft_interval_database" onchange="updraft_check_same_times();">
+					<select class="updraft_interval_database" name="updraft_interval_database">
 					<?php
 					$selected_interval_db = UpdraftPlus_Options::get_updraft_option('updraft_interval_database', UpdraftPlus_Options::get_updraft_option('updraft_interval'));
 					foreach ($intervals as $cronsched => $descrip) {
@@ -3743,8 +3734,7 @@ class UpdraftPlus_Admin {
 						echo ">$descrip</option>\n";
 					}
 					?>
-					</select> <span id="updraft_same_schedules_message"><?php echo apply_filters('updraftplus_schedule_sametimemsg', '');?></span><span id="updraft_db_timings"><?php echo apply_filters('updraftplus_schedule_showdbopts', '<input type="hidden" name="updraftplus_starttime_db" value="">', $selected_interval_db); ?></span>
-				
+					</select> <span class="updraft_same_schedules_message"><?php echo apply_filters('updraftplus_schedule_sametimemsg', '');?></span><span class="updraft_db_timings"><?php echo apply_filters('updraftplus_schedule_showdbopts', '<input type="hidden" name="updraftplus_starttime_db" value="">', $selected_interval_db); ?></span>
 
 					<?php
 						$updraft_retain_db = max((int)UpdraftPlus_Options::get_updraft_option('updraft_retain_db', $updraft_retain), 1);
@@ -3758,7 +3748,7 @@ class UpdraftPlus_Admin {
 			</td>
 			</tr>
 			<tr class="backup-interval-description">
-				<th><?php do_action('updraftplus_timeconfig_extrarow_header'); ?></th>
+				<th></th>
 				<td><div>
 				<?php
 					echo apply_filters('updraftplus_fixtime_ftinfo', '<p>'.__('To fix the time at which a backup should take place,','updraftplus').' ('.__('e.g. if your server is busy at day and you want to run overnight','updraftplus').'), '.__('or to configure more complex schedules', 'updraftplus').', <a href="https://updraftplus.com/shop/updraftplus-premium/">'.htmlspecialchars(__('use UpdraftPlus Premium', 'updraftplus')).'</a></p>'); 
@@ -3770,41 +3760,42 @@ class UpdraftPlus_Admin {
 			<h2 class="updraft_settings_sectionheading"><?php _e('Sending Your Backup To Remote Storage','updraftplus');?></h2>
 
 			<?php
-				$debug_mode = (UpdraftPlus_Options::get_updraft_option('updraft_debug_mode')) ? 'checked="checked"' : "";
-				// Should be one of s3, dropbox, ftp, googledrive, email, or whatever else is added
+				$debug_mode = UpdraftPlus_Options::get_updraft_option('updraft_debug_mode') ? 'checked="checked"' : "";
 				$active_service = UpdraftPlus_Options::get_updraft_option('updraft_service');
 			?>
 
 			<table class="form-table width-900">
 			<tr>
-				<th><?php _e('Choose your remote storage','updraftplus'); do_action('updraftplus_after_remote_storage_heading');?>:</th>
-				<td><?php
-
-				if (false === apply_filters('updraftplus_storage_printoptions', false, $active_service)) {
+				<th><?php
+					echo __('Choose your remote storage','updraftplus').'<br>'.apply_filters('updraftplus_after_remote_storage_heading_message', '<em>'.__('(tap on an icon to select or unselect)', 'updraftplus').'</em>');
+				?>:</th>
+				<td>
+				<div id="remote-storage-container">
+				<?php
 					if (is_array($active_service)) $active_service = $updraftplus->just_one($active_service);
-					?>
-
-					<select name="updraft_service" id="updraft-service" class="icon-dropdown">
-					<option value="none" <?php
-						if ('none' === $active_service) echo ' selected="selected"'; ?>><?php _e('None','updraftplus'); ?></option>
-					<?php
-					foreach ($updraftplus->backup_methods as $method => $description) {
-						echo "<option value=\"$method\"";
-						if ($active_service === $method || (is_array($active_service) && in_array($method, $active_service))) echo ' selected="selected"';
-						echo '>'.$description;
-						echo "</option>\n";
-					}
-					?>
-					</select>
-
-					<?php echo '<p><a href="https://updraftplus.com/shop/morestorage/">'.htmlspecialchars(__('You can send a backup to more than one destination with an add-on.','updraftplus')).'</a></p>'; ?>
-
-				</td>
-			</tr>
-			
-				<?php } ?>
 					
-					<tr class="updraftplusmethod none" style="display:none;">
+					//Change this to give a class that we can exclude
+					$multi = apply_filters('updraftplus_storage_printoptions_multi', '');
+					
+					foreach($updraftplus->backup_methods as $method => $description) {
+						echo "<input name=\"updraft_service[]\" class=\"updraft_servicecheckbox $method $multi\" id=\"updraft_servicecheckbox_$method\" type=\"checkbox\" value=\"$method\"";
+						if ($active_service === $method || (is_array($active_service) && in_array($method, $active_service))) echo ' checked="checked"';
+						echo " data-labelauty=\"".esc_attr($description)."\">";
+					}
+				?>
+				
+				
+				<?php 
+					if (false === apply_filters('updraftplus_storage_printoptions', false, $active_service)) {
+						
+						echo '</div>';
+						echo '<p><a href="https://updraftplus.com/shop/morestorage/">'.htmlspecialchars(__('You can send a backup to more than one destination with an add-on.','updraftplus')).'</a></p>';
+						echo '</td></tr>';
+				}
+					?>
+				
+					
+					<tr class="updraftplusmethod none ud_nostorage" style="display:none;">
 						<td></td>
 						<td><em><?php echo htmlspecialchars(__('If you choose no remote storage, then the backups remain on the web-server. This is not recommended (unless you plan to manually copy them to your computer), as losing the web-server would mean losing both your website and the backups in one event.', 'updraftplus'));?></em></td>
 					</tr>
@@ -3842,7 +3833,7 @@ class UpdraftPlus_Admin {
 			<table class="form-table width-900">
 
 			<tr>
-				<th><?php _e('Database encryption phrase','updraftplus');?>:</th>
+				<th><?php _e('Database encryption phrase', 'updraftplus');?>:</th>
 
 				<td>
 				<?php
@@ -3850,12 +3841,15 @@ class UpdraftPlus_Admin {
 				?>
 				</td>
 			</tr>
+			
+			<?php if (!empty($options['include_database_decrypter'])) { ?>
+			
 			<tr class="backup-crypt-description">
 				<td></td>
 
 				<td>
 
-				<a href="#" onclick="jQuery('#updraftplus_db_decrypt').val(jQuery('#updraft_encryptionphrase').val()); jQuery('#updraft-manualdecrypt-modal').slideToggle(); return false;"><?php _e('You can manually decrypt an encrypted database here.','updraftplus');?></a>
+				<a href="#" class="updraft_show_decryption_widget"><?php _e('You can manually decrypt an encrypted database here.','updraftplus');?></a>
 
 				<div id="updraft-manualdecrypt-modal" class="updraft-hidden" style="display:none;">
 					<p><h3><?php _e("Manually decrypt a database backup file" ,'updraftplus');?></h3></p>
@@ -3887,6 +3881,8 @@ class UpdraftPlus_Admin {
 
 				</td>
 			</tr>
+			
+			<?php } ?>
 
 			<?php
 				#'<a href="https://updraftplus.com/shop/updraftplus-premium/">'.__("This feature is part of UpdraftPlus Premium.", 'updraftplus').'</a>'
@@ -3934,33 +3930,7 @@ class UpdraftPlus_Admin {
 
 			<script type="text/javascript">
 			/* <![CDATA[ */
-
-				jQuery(document).ready(function() {
-					<?php
-						$really_is_writable = $updraftplus->really_is_writable($updraft_dir);
-						if (!$really_is_writable) echo "jQuery('.backupdirrow').show();\n";
-					?>
-					<?php
-						if (!empty($active_service)) {
-							if (is_array($active_service)) {
-								foreach ($active_service as $serv) {
-									echo "jQuery('.${serv}').show();\n";
-								}
-							} else {
-								echo "jQuery('.${active_service}').show();\n";
-							}
-						} else {
-							echo "jQuery('.none').show();\n";
-						}
-						foreach ($updraftplus->backup_methods as $method => $description) {
-							// already done: require_once(UPDRAFTPLUS_DIR.'/methods/'.$method.'.php');
-							$call_method = "UpdraftPlus_BackupModule_$method";
-							if (method_exists($call_method, 'config_print_javascript_onready')) {
-								$method_objects[$method]->config_print_javascript_onready();
-							}
-						}
-					?>
-				});
+			<?php echo $this->get_settings_js($method_objects, $really_is_writable, $updraft_dir); ?>
 			/* ]]> */
 			</script>
 			<table class="form-table width-900">
@@ -3970,7 +3940,7 @@ class UpdraftPlus_Admin {
 
 			<tr>
 				<th><?php _e('Expert settings','updraftplus');?>:</th>
-				<td><a id="enableexpertmode" href="#enableexpertmode"><?php _e('Show expert settings','updraftplus');?></a> - <?php _e("click this to show some further options; don't bother with this unless you have a problem or are curious.",'updraftplus');?> <?php do_action('updraftplus_expertsettingsdescription'); ?></td>
+				<td><a class="enableexpertmode" href="#enableexpertmode"><?php _e('Show expert settings','updraftplus');?></a> - <?php _e("click this to show some further options; don't bother with this unless you have a problem or are curious.",'updraftplus');?> <?php do_action('updraftplus_expertsettingsdescription'); ?></td>
 			</tr>
 			<?php
 			$delete_local = UpdraftPlus_Options::get_updraft_option('updraft_delete_local', 1);
@@ -3986,7 +3956,7 @@ class UpdraftPlus_Admin {
 
 			<tr class="expertmode updraft-hidden" style="display:none;">
 				<th><?php _e('Split archives every:','updraftplus');?></th>
-				<td><input type="text" name="updraft_split_every" id="updraft_split_every" value="<?php echo $split_every_mb ?>" size="5" /> Mb<br><?php echo sprintf(__('UpdraftPlus will split up backup archives when they exceed this file size. The default value is %s megabytes. Be careful to leave some margin if your web-server has a hard size limit (e.g. the 2 Gb / 2048 Mb limit on some 32-bit servers/file systems).','updraftplus'), 400); ?></td>
+				<td><input type="text" name="updraft_split_every" class="updraft_split_every" value="<?php echo $split_every_mb ?>" size="5" /> MB<br><?php echo sprintf(__('UpdraftPlus will split up backup archives when they exceed this file size. The default value is %s megabytes. Be careful to leave some margin if your web-server has a hard size limit (e.g. the 2 GB / 2048 MB limit on some 32-bit servers/file systems).','updraftplus'), 400); ?></td>
 			</tr>
 
 			<tr class="deletelocal expertmode updraft-hidden" style="display:none;">
@@ -3999,28 +3969,33 @@ class UpdraftPlus_Admin {
 				<td><input type="text" name="updraft_dir" id="updraft_dir" style="width:525px" value="<?php echo htmlspecialchars($this->prune_updraft_dir_prefix($updraft_dir)); ?>" /></td>
 			</tr>
 			<tr class="expertmode backupdirrow updraft-hidden" style="display:none;">
-				<td></td><td>
+				<td></td>
+				<td>
 					<span id="updraft_writable_mess">
 						<?php
-							//moved into function for ajax save
-							$dir_info = $this->really_writable_message($really_is_writable, $updraft_dir);
-							echo $dir_info.'</span> '.__("This is where UpdraftPlus will write the zip files it creates initially.  This directory must be writable by your web server. It is relative to your content directory (which by default is called wp-content).", 'updraftplus').' '.__("<b>Do not</b> place it inside your uploads or plugins directory, as that will cause recursion (backups of backups of backups of...).",'updraftplus');?></td>
-					
+						$dir_info = $this->really_writable_message($really_is_writable, $updraft_dir);
+						echo $dir_info;
+						?>
+					</span>
+						<?php
+						 echo __("This is where UpdraftPlus will write the zip files it creates initially.  This directory must be writable by your web server. It is relative to your content directory (which by default is called wp-content).", 'updraftplus').' '.__("<b>Do not</b> place it inside your uploads or plugins directory, as that will cause recursion (backups of backups of backups of...).", 'updraftplus');
+						 ?>
+					</td>
 			</tr>
 
 			<tr class="expertmode updraft-hidden" style="display:none;">
-				<th><?php _e('Use the server\'s SSL certificates','updraftplus');?>:</th>
-				<td><input type="checkbox" id="updraft_ssl_useservercerts" name="updraft_ssl_useservercerts" value="1" <?php if (UpdraftPlus_Options::get_updraft_option('updraft_ssl_useservercerts')) echo 'checked="checked"'; ?>> <br><label for="updraft_ssl_useservercerts"><?php _e('By default UpdraftPlus uses its own store of SSL certificates to verify the identity of remote sites (i.e. to make sure it is talking to the real Dropbox, Amazon S3, etc., and not an attacker). We keep these up to date. However, if you get an SSL error, then choosing this option (which causes UpdraftPlus to use your web server\'s collection instead) may help.','updraftplus');?></label></td>
+				<th><?php _e("Use the server's SSL certificates", 'updraftplus');?>:</th>
+				<td><input data-updraft_settings_test="useservercerts" type="checkbox" id="updraft_ssl_useservercerts" name="updraft_ssl_useservercerts" value="1" <?php if (UpdraftPlus_Options::get_updraft_option('updraft_ssl_useservercerts')) echo 'checked="checked"'; ?>> <br><label for="updraft_ssl_useservercerts"><?php _e('By default UpdraftPlus uses its own store of SSL certificates to verify the identity of remote sites (i.e. to make sure it is talking to the real Dropbox, Amazon S3, etc., and not an attacker). We keep these up to date. However, if you get an SSL error, then choosing this option (which causes UpdraftPlus to use your web server\'s collection instead) may help.','updraftplus');?></label></td>
 			</tr>
 
 			<tr class="expertmode updraft-hidden" style="display:none;">
 				<th><?php _e('Do not verify SSL certificates','updraftplus');?>:</th>
-				<td><input type="checkbox" id="updraft_ssl_disableverify" name="updraft_ssl_disableverify" value="1" <?php if (UpdraftPlus_Options::get_updraft_option('updraft_ssl_disableverify')) echo 'checked="checked"'; ?>> <br><label for="updraft_ssl_disableverify"><?php _e('Choosing this option lowers your security by stopping UpdraftPlus from verifying the identity of encrypted sites that it connects to (e.g. Dropbox, Google Drive). It means that UpdraftPlus will be using SSL only for encryption of traffic, and not for authentication.','updraftplus');?> <?php _e('Note that not all cloud backup methods are necessarily using SSL authentication.', 'updraftplus');?></label></td>
+				<td><input data-updraft_settings_test="disableverify" type="checkbox" id="updraft_ssl_disableverify" name="updraft_ssl_disableverify" value="1" <?php if (UpdraftPlus_Options::get_updraft_option('updraft_ssl_disableverify')) echo 'checked="checked"'; ?>> <br><label for="updraft_ssl_disableverify"><?php _e('Choosing this option lowers your security by stopping UpdraftPlus from verifying the identity of encrypted sites that it connects to (e.g. Dropbox, Google Drive). It means that UpdraftPlus will be using SSL only for encryption of traffic, and not for authentication.','updraftplus');?> <?php _e('Note that not all cloud backup methods are necessarily using SSL authentication.', 'updraftplus');?></label></td>
 			</tr>
 
 			<tr class="expertmode updraft-hidden" style="display:none;">
 				<th><?php _e('Disable SSL entirely where possible', 'updraftplus');?>:</th>
-				<td><input type="checkbox" id="updraft_ssl_nossl" name="updraft_ssl_nossl" value="1" <?php if (UpdraftPlus_Options::get_updraft_option('updraft_ssl_nossl')) echo 'checked="checked"'; ?>> <br><label for="updraft_ssl_nossl"><?php _e('Choosing this option lowers your security by stopping UpdraftPlus from using SSL for authentication and encrypted transport at all, where possible. Note that some cloud storage providers do not allow this (e.g. Dropbox), so with those providers this setting will have no effect.','updraftplus');?> <a href="https://updraftplus.com/faqs/i-get-ssl-certificate-errors-when-backing-up-andor-restoring/"><?php _e('See this FAQ also.', 'updraftplus');?></a></label></td>
+				<td><input data-updraft_settings_test="nossl" type="checkbox" id="updraft_ssl_nossl" name="updraft_ssl_nossl" value="1" <?php if (UpdraftPlus_Options::get_updraft_option('updraft_ssl_nossl')) echo 'checked="checked"'; ?>> <br><label for="updraft_ssl_nossl"><?php _e('Choosing this option lowers your security by stopping UpdraftPlus from using SSL for authentication and encrypted transport at all, where possible. Note that some cloud storage providers do not allow this (e.g. Dropbox), so with those providers this setting will have no effect.','updraftplus');?> <a href="https://updraftplus.com/faqs/i-get-ssl-certificate-errors-when-backing-up-andor-restoring/"><?php _e('See this FAQ also.', 'updraftplus');?></a></label></td>
 			</tr>
 
 			<?php do_action('updraftplus_configprint_expertoptions'); ?>
@@ -4029,17 +4004,16 @@ class UpdraftPlus_Admin {
 			<td></td>
 			<td>
 				<?php
-					$ws_ad = $updraftplus->wordshell_random_advert(1);
+					$ws_ad = empty($options['include_adverts']) ? false : $updraftplus->wordshell_random_advert(1);
 					if ($ws_ad) {
-				?>
-				<p class="wordshell-advert">
-					<?php echo $ws_ad; ?>
-				</p>
-				<?php
-					}
-				?>
+					?>
+					<p class="wordshell-advert">
+						<?php echo $ws_ad; ?>
+					</p>
+					<?php } ?>
 				</td>
 			</tr>
+			<?php if (!empty($options['include_save_button'])) { ?>
 			<tr>
 				<td></td>
 				<td>
@@ -4047,10 +4021,48 @@ class UpdraftPlus_Admin {
 					<input type="submit" class="button-primary" id="updraftplus-settings-save" value="<?php _e('Save Changes','updraftplus');?>" />
 				</td>
 			</tr>
+			<?php } ?>
 		</table>
 		<?php
 	}
 
+	private function get_settings_js($method_objects, $really_is_writable, $updraft_dir) {
+
+		global $updraftplus;
+		
+		ob_start();
+		?>
+		jQuery(document).ready(function() {
+			<?php
+				if (!$really_is_writable) echo "jQuery('.backupdirrow').show();\n";
+			?>
+			<?php
+				if (!empty($active_service)) {
+					if (is_array($active_service)) {
+						foreach ($active_service as $serv) {
+							echo "jQuery('.${serv}').show();\n";
+						}
+					} else {
+						echo "jQuery('.${active_service}').show();\n";
+					}
+				} else {
+					echo "jQuery('.none').show();\n";
+				}
+				foreach ($updraftplus->backup_methods as $method => $description) {
+					// already done: require_once(UPDRAFTPLUS_DIR.'/methods/'.$method.'.php');
+					$call_method = "UpdraftPlus_BackupModule_$method";
+					if (method_exists($call_method, 'config_print_javascript_onready')) {
+						$method_objects[$method]->config_print_javascript_onready();
+					}
+				}
+			?>
+		});
+		<?php
+		$ret = ob_get_contents();
+		ob_end_clean();
+		return $ret;
+	}
+	
 	// $include_more can be (bool) or (string)"sometimes"
 	public function files_selector_widgetry($prefix = '', $show_exclusion_options = true, $include_more = true) {
 
@@ -4064,7 +4076,9 @@ class UpdraftPlus_Admin {
 			$included = (UpdraftPlus_Options::get_updraft_option("updraft_include_$key", apply_filters("updraftplus_defaultoption_include_".$key, true))) ? 'checked="checked"' : "";
 			if ('others' == $key || 'uploads' == $key) {
 
-				$ret .= '<input class="updraft_include_entity" id="'.$prefix.'updraft_include_'.$key.'" type="checkbox" name="updraft_include_'.$key.'" value="1" '.$included.'> <label '.(('others' == $key) ? 'title="'.sprintf(__('Your wp-content directory server path: %s', 'updraftplus'), WP_CONTENT_DIR).'" ' : '').' for="'.$prefix.'updraft_include_'.$key.'">'.(('others' == $key) ? __('Any other directories found inside wp-content', 'updraftplus') : htmlspecialchars($info['description'])).'</label><br>';
+				$data_toggle_exclude_field = $show_exclusion_options ? 'data-toggle_exclude_field="'.$key.'"' : '';
+			
+				$ret .= '<input class="updraft_include_entity" id="'.$prefix.'updraft_include_'.$key.'" '.$data_toggle_exclude_field.' type="checkbox" name="updraft_include_'.$key.'" value="1" '.$included.'> <label '.(('others' == $key) ? 'title="'.sprintf(__('Your wp-content directory server path: %s', 'updraftplus'), WP_CONTENT_DIR).'" ' : '').' for="'.$prefix.'updraft_include_'.$key.'">'.(('others' == $key) ? __('Any other directories found inside wp-content', 'updraftplus') : htmlspecialchars($info['description'])).'</label><br>';
 				
 				if ($show_exclusion_options) {
 					$include_exclude = UpdraftPlus_Options::get_updraft_option('updraft_include_'.$key.'_exclude', ('others' == $key) ? UPDRAFT_DEFAULT_OTHERS_EXCLUDE : UPDRAFT_DEFAULT_UPLOADS_EXCLUDE);
@@ -4083,7 +4097,10 @@ class UpdraftPlus_Admin {
 			} else {
 
 				if ($key != 'more' || true === $include_more || ('sometimes' === $include_more && !empty($include_more_paths))) {
-					$ret .= "<input class=\"updraft_include_entity\" id=\"".$prefix."updraft_include_$key\" type=\"checkbox\" name=\"updraft_include_$key\" value=\"1\" $included /><label for=\"".$prefix."updraft_include_$key\"".((isset($info['htmltitle'])) ? ' title="'.htmlspecialchars($info['htmltitle']).'"' : '')."> ".htmlspecialchars($info['description']);
+				
+					$data_toggle_exclude_field = $show_exclusion_options ? 'data-toggle_exclude_field="'.$key.'"' : '';
+				
+					$ret .= "<input class=\"updraft_include_entity\" $data_toggle_exclude_field id=\"".$prefix."updraft_include_$key\" type=\"checkbox\" name=\"updraft_include_$key\" value=\"1\" $included /><label for=\"".$prefix."updraft_include_$key\"".((isset($info['htmltitle'])) ? ' title="'.htmlspecialchars($info['htmltitle']).'"' : '')."> ".htmlspecialchars($info['description']);
 
 					$ret .= "</label><br>";
 					$ret .= apply_filters("updraftplus_config_option_include_$key", '', $prefix);
@@ -4106,7 +4123,7 @@ class UpdraftPlus_Admin {
 
 	public function optionfilter_split_every($value) {
 		$value = absint($value);
-		if (!$value >= UPDRAFTPLUS_SPLIT_MIN) $value = UPDRAFTPLUS_SPLIT_MIN;
+		if ($value < UPDRAFTPLUS_SPLIT_MIN) $value = UPDRAFTPLUS_SPLIT_MIN;
 		return $value;
 	}
 
@@ -4612,7 +4629,7 @@ ENDHERE;
 		if (isset($backup['nonce']) && preg_match("/^[0-9a-f]{12}$/",$backup['nonce']) && is_readable($updraft_dir.'/log.'.$backup['nonce'].'.txt')) {
 			$nval = $backup['nonce'];
 // 			$lt = esc_attr(__('View Log','updraftplus'));
-			$lt = __('View Log','updraftplus');
+			$lt = __('View Log', 'updraftplus');
 			$url = esc_attr(UpdraftPlus_Options::admin_page()."?page=updraftplus&action=downloadlog&amp;updraftplus_backup_nonce=$nval");
 			$ret .= <<<ENDHERE
 				<div style="clear:none;" class="updraft-viewlogdiv">
@@ -4755,10 +4772,10 @@ ENDHERE;
 			// Gather the restore optons into one place - code after here should read the options, and not the HTTP layer
 			$restore_options = array();
 			if (!empty($_POST['updraft_restorer_restore_options'])) {
-				parse_str($_POST['updraft_restorer_restore_options'], $restore_options);
+				parse_str(stripslashes($_POST['updraft_restorer_restore_options']), $restore_options);
 			}
 			$restore_options['updraft_restorer_replacesiteurl'] = empty($_POST['updraft_restorer_replacesiteurl']) ? false : true;
-			$restore_options['updraft_encryptionphrase'] = empty($_POST['updraft_encryptionphrase']) ? '' : (string)$_POST['updraft_encryptionphrase'];
+			$restore_options['updraft_encryptionphrase'] = empty($_POST['updraft_encryptionphrase']) ? '' : (string)stripslashes($_POST['updraft_encryptionphrase']);
 			$restore_options['updraft_restorer_wpcore_includewpconfig'] = empty($_POST['updraft_restorer_wpcore_includewpconfig']) ? false : true;
 			$updraftplus->jobdata_set('restore_options', $restore_options);
 		}
@@ -4856,7 +4873,7 @@ ENDHERE;
 				// If a file size is stored in the backup data, then verify correctness of the local file
 				if (isset($backup_history[$timestamp][$type.$index.'-size'])) {
 					$fs = $backup_history[$timestamp][$type.$index.'-size'];
-					echo __("Archive is expected to be size:",'updraftplus')." ".round($fs/1024, 1)." Kb: ";
+					echo __("Archive is expected to be size:",'updraftplus')." ".round($fs/1024, 1)." KB: ";
 					$as = @filesize($fullpath);
 					if ($as == $fs) {
 						echo __('OK','updraftplus').'<br>';
@@ -5073,7 +5090,7 @@ ENDHERE;
 		
 		if (empty($_POST['settings']) || !is_string($_POST['settings'])) die('Invalid data');
 
-		parse_str($_POST['settings'], $posted_settings);
+		parse_str(stripslashes($_POST['settings']), $posted_settings);
 		// We now have $posted_settings as an array
 		
 		echo json_encode($this->save_settings($posted_settings));
@@ -5091,19 +5108,20 @@ ENDHERE;
 		$no_remote_configured = (empty($service) || array('none') === $service || array('') === $service) ? true : false;
 
 		if ($no_remote_configured) {
-			return '<input type="checkbox" disabled="disabled" id="backupnow_includecloud"> <label for="backupnow_includecloud"><em>'.sprintf(__("Backup won't be sent to any remote storage - none has been saved in the %s", 'updraftplus'), '<a href="'.UpdraftPlus_Options::admin_page_url().'?page=updraftplus&amp;tab=settings" id="updraft_backupnow_gotosettings">'.__('settings', 'updraftplus')).'</a>. '.__('Not got any remote storage?', 'updraftplus').' <a href="https://updraftplus.com/support/updraftplus-vault-faqs/">'.__("Check out UpdraftPlus Vault.", 'updraftplus').'</a></em></label>';
+			return '<input type="checkbox" disabled="disabled" id="backupnow_includecloud"> <em>'.sprintf(__("Backup won't be sent to any remote storage - none has been saved in the %s", 'updraftplus'), '<a href="'.UpdraftPlus_Options::admin_page_url().'?page=updraftplus&amp;tab=settings" id="updraft_backupnow_gotosettings">'.__('settings', 'updraftplus')).'</a>. '.__('Not got any remote storage?', 'updraftplus').' <a href="https://updraftplus.com/support/updraftplus-vault-faqs/">'.__("Check out UpdraftPlus Vault.", 'updraftplus').'</a></em>';
 		} else {
 			return '<input type="checkbox" id="backupnow_includecloud" checked="checked"> <label for="backupnow_includecloud">'.__("Send this backup to remote storage", 'updraftplus').'</label>';
 		}
 	}
        
-
-	
 	public function save_settings($settings) {
 	
 		global $updraftplus;
 	
-		$return_array = array('saved' => true, 'changed' => array());
+		// Make sure that settings filters are registered
+		UpdraftPlus_Options::admin_init();
+	
+		$return_array = array('saved' => true);
 		
 		$add_to_post_keys = array('updraft_interval', 'updraft_interval_database', 'updraft_starttime_files', 'updraft_starttime_db', 'updraft_startday_files', 'updraft_startday_db');
 		
@@ -5129,6 +5147,12 @@ ENDHERE;
 		
 		$relevant_keys = $updraftplus->get_settings_keys();
 		
+		if (method_exists('UpdraftPlus_Options', 'mass_options_update')) {
+			$original_settings = $settings;
+			$settings = UpdraftPlus_Options::mass_options_update($settings);
+			$mass_updated = true;
+		}
+		
 		foreach ($settings as $key => $value) {
 // 			$exclude_keys = array('option_page', 'action', '_wpnonce', '_wp_http_referer');
 							
@@ -5139,16 +5163,17 @@ ENDHERE;
 						if ($subvalue == '0') unset($value[$subkey]);
 					}
 				}
+
+				// This flag indicates that either the stored database option was changed, or that the supplied option was changed before being stored. It isn't comprehensive - it's only used to update some UI elements with invalid input.
+				$updated = empty($mass_updated) ? (is_string($value) && $value != UpdraftPlus_Options::get_updraft_option($key)) : (is_string($value) && (!isset($original_settings[$key]) || $original_settings[$key] != $value));
 				
-				$updated = UpdraftPlus_Options::update_updraft_option($key, $value);
+				$db_updated = empty($mass_updated) ? UpdraftPlus_Options::update_updraft_option($key, $value) : true;
 				
 				// Add information on what has changed to array to loop through to update links etc.
-				if ($updated){
-					$return_array['changed'][$key] = $value;
-				} elseif ($key == 'updraft_interval'){ //To schedule a database when the interval is not changed.
-					$updraftplus->schedule_backup($value);
-				} elseif ($key == 'updraft_interval_database'){
-					$updraftplus->schedule_backup_database($value);
+				// Restricting to strings for now, to prevent any unintended leakage (since this is just used for UI updating)
+				if ($updated) {
+					$value = UpdraftPlus_Options::get_updraft_option($key);
+					if (is_string($value)) $return_array['changed'][$key] = $value;
 				}
 			} else {
 				// When last active, it was catching: option_page, action, _wpnonce, _wp_http_referer, updraft_s3_endpoint, updraft_dreamobjects_endpoint. The latter two are empty; probably don't need to be in the page at all.
@@ -5157,7 +5182,7 @@ ENDHERE;
 		}
 		
 		// Checking for various possible messages
-		$updraft_dir = $updraftplus->backups_dir_location();
+		$updraft_dir = $updraftplus->backups_dir_location(false);
 		$really_is_writable = $updraftplus->really_is_writable($updraft_dir);
 		$dir_info = $this->really_writable_message($really_is_writable, $updraft_dir);
 		$button_title = esc_attr(__('This button is disabled because your backup directory is not writable (see the settings).', 'updraftplus'));
@@ -5198,6 +5223,9 @@ ENDHERE;
 		
 		$return_array['messages'] = $messages_output;
 		$return_array['scheduled'] = $scheduled_output;
+		
+		//*** Add the updated options to the return message, so we can update on screen ***\\
+		
 		
 		return $return_array;
 		

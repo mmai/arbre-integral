@@ -1,10 +1,10 @@
 <?php 
 
-/// Here is the install databese class
+/// Install databese class
 
 class install_database{
 	
-	public $installed_options; // standard options
+	public $installed_options; // Standard options of plugin
 	private $plugin_url;
 
 	function __construct(){

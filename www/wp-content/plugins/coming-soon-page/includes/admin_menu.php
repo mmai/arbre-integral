@@ -180,7 +180,7 @@ class coming_soon_admin_menu{
 				<tbody> 
                		<tr>
 						<td>
-							Show/Hide logo <span title="Choose to show or hide your logo from Coming soon page." class="desription_class">?</span>
+							Show/Hide Logo <span title="Choose to show or hide your logo from Coming soon page." class="desription_class">?</span>
 						</td>
 						<td>
 							<select id="coming_soon_page_logo_enable">
@@ -278,7 +278,7 @@ class coming_soon_admin_menu{
 				<tbody> 
                		<tr>
 						<td>
-							Show/Hide title <span title="Choose to show or hide your Title from Coming soon page." class="desription_class">?</span>
+							Show/Hide Title <span title="Choose to show or hide your Title from Coming soon page." class="desription_class">?</span>
 						</td>
 						<td>
 							<select id="coming_soon_page_title_enable">
@@ -634,7 +634,7 @@ class coming_soon_admin_menu{
 					</tr> 
                     <tr>
 						<td>
-							Animation type<span class="pro_feature"> (pro)</span> <span title="Choose animation type for countdown." class="desription_class">?</span>
+							Countdown animation type<span class="pro_feature"> (pro)</span> <span title="Choose animation type for countdown." class="desription_class">?</span>
 						</td>
 						<td>
 							<?php $this->create_select_element_for_showing_effect('coming_soon_page_countdown_animation_type','none'); ?>
@@ -695,7 +695,7 @@ class coming_soon_admin_menu{
 					</tr>
                     <tr>
 						<td>
-							 Width<span class="pro_feature"> (pro)</span> <span title="Type here Progress bar width." class="desription_class">?</span>
+							 Progress bar Width<span class="pro_feature"> (pro)</span> <span title="Type here Progress bar width." class="desription_class">?</span>
 						</td>
 						<td>
                            <input type="text" size="3" class="coming_number_slider pro_input" data-max-val="100" data-min-val="0" name="coming_soon_page_progressbar_width" value="100" id="coming_soon_page_progressbar_width" style="border:0; color:#f6931f; font-weight:bold; width:35px" >%
@@ -813,7 +813,7 @@ class coming_soon_admin_menu{
 					</tr>
                     <tr>
 						<td>
-							User First name text<span class="pro_feature"> (pro)</span> <span title="Type here text for user first name field." class="desription_class">?</span>
+							First name field text<span class="pro_feature"> (pro)</span> <span title="Type here text for user first name field." class="desription_class">?</span>
 						</td>
 						<td>
 							<input class="pro_input" type="text" name="coming_soon_page_subscribe_firstname"   id="coming_soon_page_subscribe_firstname" value="First name">
@@ -821,7 +821,7 @@ class coming_soon_admin_menu{
 					</tr>
                     <tr>
 						<td>
-							User  Last name text<span class="pro_feature"> (pro)</span> <span title="Type here text for user last name field." class="desription_class">?</span>
+							Last name field text<span class="pro_feature"> (pro)</span> <span title="Type here text for user last name field." class="desription_class">?</span>
 						</td>
 						<td>
 							<input class="pro_input" type="text" name="coming_soon_page_subscribe_lastname"   id="coming_soon_page_subscribe_lastname" value="Last name">
@@ -1261,7 +1261,7 @@ class coming_soon_admin_menu{
 					</tr>                           
 					<tr>
 						<td>
-							Link To Admin position<span class="pro_feature"> (pro)</span> <span title="Choose position for Link To Admin(Left, Center, Right)." class="desription_class">?</span>
+							Position<span class="pro_feature"> (pro)</span> <span title="Choose position for Link To Admin(Left, Center, Right)." class="desription_class">?</span>
 						</td>
 						<td>
                            <select id="coming_soon_page_link_to_dashboard_in_content_position">
@@ -1375,7 +1375,7 @@ class coming_soon_admin_menu{
 		</div>        
 		<?php	
 	}
-	/*#########################  Except Page ip   #################################*/
+	/*#########################  Except Page ip Part  #################################*/
 	public function generete_except_section($page_parametrs){
 
 		?>
@@ -1427,7 +1427,7 @@ class coming_soon_admin_menu{
 		</div>        
 		<?php	
 	}
-	/*#########################  Background options   #################################*/
+	/*#########################  Background options Part  #################################*/
 	public function generete_background_section($page_parametrs){
 
 		?>
@@ -1482,7 +1482,7 @@ class coming_soon_admin_menu{
 		</div>        
 		<?php	
 	}
-	/*#########################  Content   #################################*/
+	/*#########################  Content Part  #################################*/
 	public function generete_content_section($page_parametrs){
 
 		?>
@@ -1837,7 +1837,7 @@ class coming_soon_admin_menu{
 		die($this->text_parametrs['sucsses_mailed']);
 		
 	}
-	/*################################## FEATURED PLUGINS #########################################*/
+	/*################################## FEATURED PLUGINS ADMIN PAGE #########################################*/
 	public function featured_plugins(){
 		$plugins_array=array(
 			'coming_soon'=>array(

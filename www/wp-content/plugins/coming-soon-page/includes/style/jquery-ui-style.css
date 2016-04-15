@@ -31,7 +31,7 @@
 	clear: both;
 }
 .ui-helper-clearfix {
-	min-height: 0; /* support: IE7 */
+	min-height: 0; /* For: IE7 */
 }
 .ui-helper-zfix {
 	width: 100%;
@@ -40,7 +40,7 @@
 	left: 0;
 	position: absolute;
 	opacity: 0;
-	filter:Alpha(Opacity=0); /* support: IE8 */
+	filter:Alpha(Opacity=0); /* For: IE8 */
 }
 
 .ui-front {
@@ -1201,7 +1201,7 @@ body .ui-tooltip {
 	border-bottom-right-radius: 4px;
 }
 
-/* Overlays */
+/********************* Overlays Style ********************/
 .ui-widget-overlay {
 	background: #666666 url("../../images/ui-bg_diagonals-thick_20_666666_40x40.png") 50% 50% repeat;
 	opacity: .5;

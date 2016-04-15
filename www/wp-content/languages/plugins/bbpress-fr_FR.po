@@ -2,23 +2,21 @@
 # This file is distributed under the same license as the Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2016-03-11 17:27+0100\n"
+"PO-Revision-Date: 2016-03-18 12:31:42+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: GlotPress/1.1.0-alpha\n"
 "Project-Id-Version: Stable (latest release)\n"
-"POT-Creation-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: fr_FR\n"
 
 #. Author of the plugin/theme
 msgid "The bbPress Community"
 msgstr "La communauté bbPress"
 
+#. #-#-#-#-#  tmp-bbpress.pot (bbPress 2.5.8)  #-#-#-#-#
 #. Plugin URI of the plugin/theme
+#. #-#-#-#-#  tmp-bbpress.pot (bbPress 2.5.8)  #-#-#-#-#
 #. Author URI of the plugin/theme
 msgid "http://bbpress.org"
 msgstr "http://bbpress.org"
@@ -1248,7 +1246,7 @@ msgstr "<strong>ERREUR</strong>: Votre description de forum ne peut pas être vi
 
 #: includes/forums/functions.php:181
 msgid "<strong>ERROR</strong>: Your forum must have a parent."
-msgstr "<strong>ERREUR</strong>: Votre forum doit avoir un parent."
+msgstr "<strong>ERREUR :</strong> votre forum doit avoir un parent."
 
 #: includes/forums/functions.php:188
 msgid "<strong>ERROR</strong>: This forum is a category. No forums can be created in this forum."
@@ -1269,7 +1267,7 @@ msgstr "<strong>ERREUR&nbsp;:&nbsp;</strong> ce forum est caché et vous ne pouv
 #: includes/forums/functions.php:210 includes/replies/functions.php:284
 #: includes/topics/functions.php:260
 msgid "<strong>ERROR</strong>: Slow down; you move too fast."
-msgstr "<strong>ERREUR:</strong> Ralentissez, vous aller trop vite."
+msgstr "<strong>ERREUR :</strong> ralentissez, vous allez trop vite."
 
 #: includes/forums/functions.php:215
 msgid "<strong>ERROR</strong>: This forum already exists."
@@ -1285,7 +1283,7 @@ msgstr "<strong>ERREUR&nbsp;:&nbsp;</strong> l’ID du forum n’a pas été tro
 
 #: includes/forums/functions.php:400
 msgid "<strong>ERROR</strong>: The forum you want to edit was not found."
-msgstr "<strong>ERREUR</strong>: Impossible de trouve le forum que vous voulez modifier."
+msgstr "<strong>ERREUR :</strong> impossible de trouver le forum que vous voulez modifier."
 
 #: includes/forums/functions.php:405
 msgid "<strong>ERROR</strong>: You do not have permission to edit that forum."
@@ -1354,10 +1352,9 @@ msgstr "Aucun Forum trouvé"
 msgid "No forums found in Trash"
 msgstr "Aucun Forum trouvé dans la Corbeille"
 
-#: includes/forums/template.php:61
-#: templates/default/bbpress/form-forum.php:118
+#: includes/forums/template.php:61 templates/default/bbpress/form-forum.php:118
 msgid "Parent Forum:"
-msgstr "Forum parent:"
+msgstr "Forum parent :"
 
 #: includes/forums/template.php:840 includes/topics/template.php:1846
 #: includes/users/template.php:1058
@@ -1461,7 +1458,7 @@ msgstr "<strong>ERREUR</strong> : Le forum n’existe pas."
 
 #: includes/replies/functions.php:227 includes/replies/functions.php:568
 msgid "<strong>ERROR</strong>: This forum is a category. No replies can be created in this forum."
-msgstr "<strong>ERREUR</strong> : ce forum est une catégorie. Aucune réponse ne peut y être créée."
+msgstr "<strong>ERREUR :</strong> ce forum est une catégorie. Aucune réponse ne peut y être créée."
 
 #: includes/replies/functions.php:234 includes/replies/functions.php:575
 msgid "<strong>ERROR</strong>: This forum has been closed to new replies."
@@ -1489,7 +1486,7 @@ msgstr "<strong>ERREUR&nbsp;:&nbsp;</strong> votre réponse ne peut pas être cr
 
 #: includes/replies/functions.php:318
 msgid "<strong>ERROR</strong>: Topic is closed."
-msgstr "<strong>ERREUR</strong> : le sujet est fermé."
+msgstr "<strong>ERREUR :</strong> le sujet est fermé."
 
 #: includes/replies/functions.php:377 includes/replies/functions.php:702
 msgid "<strong>ERROR</strong>: There was a problem adding the tags to the topic."
@@ -1768,7 +1765,7 @@ msgstr "<strong>ERREUR&nbsp;:&nbsp;</strong> ID du sujet non trouvé."
 
 #: includes/topics/functions.php:493
 msgid "<strong>ERROR</strong>: The topic you want to edit was not found."
-msgstr "<strong>ERREUR:</strong> Le sujet que vous voulez modifier est introuvable."
+msgstr "<strong>ERREUR :</strong> le sujet que vous voulez modifier est introuvable."
 
 #: includes/topics/functions.php:504
 msgid "<strong>ERROR</strong>: You do not have permission to edit that topic."
@@ -1812,7 +1809,7 @@ msgstr "<strong>ERREUR&nbsp;:&nbsp;</strong> le sujet que vous voulez scinder n�
 
 #: includes/topics/functions.php:1470
 msgid "<strong>ERROR</strong>: You need to choose a valid split option."
-msgstr "<strong>ERREUR:</strong> Vous devez choisir une option de fractionnement valide."
+msgstr "<strong>ERREUR :</strong> vous devez choisir une option de fractionnement valide."
 
 #: includes/topics/functions.php:1492
 msgid "<strong>ERROR</strong>: The topic you want to split to was not found!"
@@ -1820,7 +1817,7 @@ msgstr "<strong>ERREUR&nbsp;:&nbsp;</strong> le sujet que vous voulez diviser n�
 
 #: includes/topics/functions.php:1808
 msgid "<strong>ERROR</strong>: The following problem(s) have been found while getting the tag: %s"
-msgstr "<strong>ERREUR</strong> : les problèmes suivants ont été trouvés lors de la récupération du mot-clé : %s"
+msgstr "<strong>ERREUR :</strong> les problèmes suivants ont été trouvés lors de la récupération de l'étiquette : %s"
 
 #: includes/topics/functions.php:1826 includes/topics/functions.php:1865
 msgid "<strong>ERROR</strong>: You do not have the permissions to edit the topic tags."
@@ -1828,7 +1825,7 @@ msgstr "<strong>ERREUR</strong> : vous n’avez pas les permissions pour modifie
 
 #: includes/topics/functions.php:1832 includes/topics/functions.php:1871
 msgid "<strong>ERROR</strong>: You need to enter a tag name."
-msgstr "<strong>ERREUR</strong> : vous devez entrer un nom de mot-clé."
+msgstr "<strong>ERREUR :</strong> vous devez entrer un nom de l'étiquette."
 
 #: includes/topics/functions.php:1842
 msgid "<strong>ERROR</strong>: The following problem(s) have been found while updating the tag: %s"
@@ -1836,11 +1833,11 @@ msgstr "<strong>ERREUR:</strong> les problèmes suivants ont été rencontrés p
 
 #: includes/topics/functions.php:1881 includes/topics/functions.php:1899
 msgid "<strong>ERROR</strong>: The following problem(s) have been found while merging the tags: %s"
-msgstr "<strong>ERREUR</strong> : les problèmes suivants ont été trouvés lors de la fusion des mots-clés : %s"
+msgstr "<strong>ERREUR :</strong> les problèmes suivants ont été trouvés lors de la fusion des étiquettes : %s"
 
 #: includes/topics/functions.php:1890
 msgid "<strong>ERROR</strong>: The tags which are being merged can not be the same."
-msgstr "<strong>ERREUR</strong> : les mots-clés qui sont fusionnés ne peuvent pas être les mêmes."
+msgstr "<strong>ERREUR :</strong> les étiquettess à fusionner ne peuvent pas être les mêmes."
 
 #: includes/topics/functions.php:1922
 msgid "<strong>ERROR</strong>: You do not have the permissions to delete the topic tags."
@@ -1848,7 +1845,7 @@ msgstr "<strong>ERREUR</strong> : vous n’avez pas les permissions pour supprim
 
 #: includes/topics/functions.php:1931
 msgid "<strong>ERROR</strong>: The following problem(s) have been found while deleting the tag: %s"
-msgstr "<strong>ERREUR</strong> : les problèmes suivants ont été trouvés lors de la suppression du mot-clé : %s"
+msgstr "<strong>ERREUR :</strong> les problèmes suivants ont été trouvés lors de la suppression de l'étiquette : %s"
 
 #: includes/topics/functions.php:1965
 msgctxt "Open the topic"
@@ -1944,11 +1941,11 @@ msgstr "Modifier"
 
 #: includes/topics/template.php:56 includes/topics/template.php:57
 msgid "View Topic"
-msgstr "Visualiser le Sujet"
+msgstr "Afficher le sujet"
 
 #: includes/topics/template.php:58
 msgid "Search Topics"
-msgstr "Chercher les Sujets"
+msgstr "Rechercher parmi les sujets"
 
 #: includes/topics/template.php:59
 msgid "No topics found"
@@ -2003,7 +2000,7 @@ msgstr[1] "Affichage de %1$s sujets"
 #: includes/topics/template.php:2981
 msgid "Viewing topic %2$s (of %4$s total)"
 msgid_plural "Viewing %1$s topics - %2$s through %3$s (of %4$s total)"
-msgstr[0] "%2$s sujet (sur un total de %4$s)"
+msgstr[0] "%2$s sujet (sur n total de %4$s)"
 msgstr[1] "%1$s sujets de %2$s sur %3$s (sur un total de %4$s)"
 
 #: includes/topics/template.php:3041
@@ -2092,7 +2089,7 @@ msgstr "<strong>ERREUR</strong> : aucun forum n’a été trouvé ! À quel foru
 
 #: includes/users/functions.php:1223
 msgid "<strong>ERROR</strong>: There was a problem unsubscribing from that forum!"
-msgstr "<strong>ERREUR</strong> : il y a eu un problème pendant le désabonnement à ce forum !"
+msgstr "<strong>ERREUR :</strong> il y a eu un problème pendant le désabonnement à ce forum !"
 
 #: includes/users/functions.php:1225
 msgid "<strong>ERROR</strong>: There was a problem subscribing to that forum!"
@@ -2212,11 +2209,11 @@ msgstr "Aucun sujet n’a été trouvé ici!"
 
 #: templates/default/bbpress/form-anonymous.php:17
 msgid "Your information:"
-msgstr "Vos informations:"
+msgstr "Vos informations :"
 
 #: templates/default/bbpress/form-anonymous.php:22
 msgid "Name (required):"
-msgstr "Nom (obligatoire):"
+msgstr "Nom (obligatoire) :"
 
 #: templates/default/bbpress/form-anonymous.php:27
 msgid "Mail (will not be published) (required):"
@@ -2239,17 +2236,17 @@ msgstr "Ce forum est fermé aux nouveaux contenus, bien que votre compte vous pe
 #: templates/default/bbpress/form-reply.php:44
 #: templates/default/bbpress/form-topic.php:61
 msgid "Your account has the ability to post unrestricted HTML content."
-msgstr "Votre statut sur ce forum vous permet de poster du contenu HTML sans restriction"
+msgstr "Votre statut sur ce forum vous permet de poster du contenu HTML sans restriction."
 
 #: templates/default/bbpress/form-forum.php:67
 msgid "Forum Name (Maximum Length: %d):"
-msgstr "Nom du forum (Longueur maximum: %d):"
+msgstr "Nom du forum (longueur maximum : %d) :"
 
 #: templates/default/bbpress/form-forum.php:82
 #: templates/default/bbpress/form-reply.php:64
 #: templates/default/bbpress/form-topic.php:90
 msgid "You may use these <abbr title=\"HyperText Markup Language\">HTML</abbr> tags and attributes:"
-msgstr "Vous pouvez utiliser ces balises et attributs <abbr title=\"HyperText Markup Language\">HTML</abbr>:"
+msgstr "Vous pouvez utiliser ces balises et attributs <abbr title=\"HyperText Markup Language\">HTML</abbr> :"
 
 #: templates/default/bbpress/form-forum.php:91
 msgid "Forum Type:"
@@ -2312,7 +2309,7 @@ msgstr "Déplacé: %s"
 #: templates/default/bbpress/form-reply-move.php:49
 #: templates/default/bbpress/form-topic-split.php:49
 msgid "Use an existing topic in this forum:"
-msgstr "Utilisez un sujet existant dans ce forum:"
+msgstr "Utiliser un sujet existant dans ce forum :"
 
 #: templates/default/bbpress/form-reply-move.php:68
 #: templates/default/bbpress/form-topic-merge.php:89
@@ -2349,12 +2346,12 @@ msgstr "Abonnement à ce sujet avec envoi d’un mail en cas de réponse"
 #: templates/default/bbpress/form-reply.php:114
 #: templates/default/bbpress/form-topic.php:184
 msgid "Keep a log of this edit:"
-msgstr "Journaliser cette modification:"
+msgstr "Garder une trace de cette modification :"
 
 #: templates/default/bbpress/form-reply.php:118
 #: templates/default/bbpress/form-topic.php:188
 msgid "Optional reason for editing:"
-msgstr "Raison de la modification (option) :"
+msgstr "Raison de la modification (optionnel) :"
 
 #: templates/default/bbpress/form-reply.php:158
 msgid "The topic &#8216;%s&#8217; is closed to new replies."
@@ -2399,7 +2396,7 @@ msgstr "Destination"
 
 #: templates/default/bbpress/form-topic-merge.php:42
 msgid "Merge with this topic:"
-msgstr "Fusionner avec ce sujet:"
+msgstr "Fusionner avec ce sujet :"
 
 #: templates/default/bbpress/form-topic-merge.php:56
 msgid "There are no other topics in this forum to merge with."
@@ -2450,7 +2447,7 @@ msgstr "Méthode de division"
 
 #: templates/default/bbpress/form-topic-split.php:42
 msgid "Split: %s"
-msgstr "Fractionner: %s"
+msgstr "Fractionner : %s"
 
 #: templates/default/bbpress/form-topic-split.php:75
 msgid "Copy subscribers to the new topic"
@@ -2482,7 +2479,7 @@ msgstr "Changer l’identifiant affecte son permalien. Tous les liens vers l’a
 
 #: templates/default/bbpress/form-topic-tag.php:40
 msgid "Slug:"
-msgstr "Identifiant:"
+msgstr "Identifiant :"
 
 #: templates/default/bbpress/form-topic-tag.php:45
 msgid "Update"
@@ -2530,15 +2527,15 @@ msgstr "Titre du sujet (maximum %d caractères):"
 
 #: templates/default/bbpress/form-topic.php:101
 msgid "Topic Tags:"
-msgstr "Tags du Sujet:"
+msgstr "Étiquettes du sujet :"
 
 #: templates/default/bbpress/form-topic.php:133
 msgid "Topic Type:"
-msgstr "Type du Sujet:"
+msgstr "Type de sujet :"
 
 #: templates/default/bbpress/form-topic.php:145
 msgid "Topic Status:"
-msgstr "État du sujet :"
+msgstr "État du sujet&nbsp;:"
 
 #: templates/default/bbpress/form-topic.php:234
 msgid "You cannot create new topics."
@@ -3326,7 +3323,7 @@ msgstr "Calcul des parents de reply_to (%1$s - %2$s)"
 #: includes/admin/converters/vBulletin.php:652
 #: includes/admin/converters/vBulletin3.php:652
 msgid "Re: "
-msgstr "Re:"
+msgstr "Rép :"
 
 #: includes/admin/forums.php:121 includes/admin/replies.php:132
 #: includes/admin/settings.php:1549 includes/admin/topics.php:132
@@ -3524,7 +3521,7 @@ msgstr "Date"
 #: templates/default/bbpress/loop-forums.php:22
 #: templates/default/bbpress/loop-topics.php:22
 msgid "Freshness"
-msgstr "Fraîcheur"
+msgstr "Dernier message"
 
 #: includes/admin/forums.php:463 includes/forums/template.php:601
 msgid "No Topics"
@@ -3644,13 +3641,13 @@ msgstr "Vous utilisez <span class=\"b\">bbPress %s</span>."
 #: includes/admin/metaboxes.php:261 includes/admin/metaboxes.php:262
 #: includes/admin/metaboxes.php:355
 msgid "Type:"
-msgstr "Type:"
+msgstr "Type :"
 
 #: includes/admin/metaboxes.php:273 includes/admin/metaboxes.php:274
 #: includes/admin/metaboxes.php:367
 #: templates/default/bbpress/form-forum.php:100
 msgid "Status:"
-msgstr "Statut:"
+msgstr "État :"
 
 #: includes/admin/metaboxes.php:285 includes/admin/metaboxes.php:286
 #: templates/default/bbpress/form-forum.php:109
@@ -3659,7 +3656,7 @@ msgstr "Visibilité:"
 
 #: includes/admin/metaboxes.php:299
 msgid "Parent:"
-msgstr "Parent:"
+msgstr "Parent :"
 
 #: includes/admin/metaboxes.php:300
 msgid "Forum Parent"
@@ -4112,7 +4109,7 @@ msgstr "Base d’utilisateurs"
 #: includes/extend/buddypress/loader.php:269
 #: templates/default/bbpress/user-details.php:35
 msgid "Topics Started"
-msgstr "Sujet démarré"
+msgstr "Sujets lancés"
 
 #: includes/admin/settings.php:362 includes/extend/buddypress/loader.php:207
 #: includes/extend/buddypress/loader.php:277

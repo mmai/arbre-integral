@@ -1,10 +1,10 @@
 === Coming soon and Maintenance mode ===
 Contributors: maintenance mode GG, wpdevart, big ben keeper
 Donate link: http://wpdevart.com/wordpress-coming-soon-plugin/
-Tags: widget, Post , plugin, admin, page, coming soon, coming soon page, construction, landing page, launch, launch page, maintenance, maintenance mode, newsletter, offline, unavailable, under construction, wordpress coming soon, wordpress maintenance mode, wordpress under construction, landing page, underconstruction, squeeze page, countdown, maintenance page, site offline, wordpress maintenance plugin, wordpress maintenance mode. wordpress under constructio, email, gmail, message, notify, preview, subscriber, user, meta, under maintenance, site maintenance, schedule maintenance, admin maintenance, Maintenance Checklist, mode, custom maintenence mode, responsive, video background, under construction page, slider      
+Tags: widget, Post , plugin, admin, page, coming soon, coming soon page, construction, landing page, launch, launch page, maintenance, maintenance mode, newsletter, offline, unavailable, under construction, wordpress coming soon, wordpress maintenance mode, wordpress under construction, landing page, underconstruction, squeeze page, countdown, maintenance page, site offline, wordpress maintenance plugin, wordpress maintenance mode. wordpress under constructio, email, gmail, message, notify, preview, subscriber, user, meta, under maintenance, site maintenance, schedule maintenance, admin maintenance, Maintenance Checklist, mode, custom maintenence mode, responsive, video background, under construction page, slider, backgound slideshow, bing       
 Requires at least: 3.4.0
 Tested up to: 4.2.3
-Stable tag: 2.3.1
+Stable tag: 2.3.8
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -122,7 +122,7 @@ We recommend you to take a look for this useful plugins - [WordPress booking cal
 Installing the WordPress **Coming Soon and Maintenance mode** plugin  
 
 1. Log in to your website administration panel.   
-2. Go to Plugins page Add New > Upload Plugin .    
+2. Go to Plugins page and click on Add New button, then click on Upload Plugin button.     
 3. Click "Choose file" then select the [WordPress Coming Soon](https://wordpress.org/plugins/coming-soon-page/) and Maintenance mode plugin zip file. 
 4. Then Install and activate our WordPress Maintenance mode plugin.     
 5. From the left panel of Dashboard, click on the gear icon - Coming Soon link to fully customize the plugin
@@ -153,6 +153,18 @@ Android doesn't allow set autoplay functionality on YouTube embedded videos, so 
 = Can I change the position of Coming soon page content =
 
 Yes, we have such option and you can do this using drop down functionality.
+
+= Can I insert video or image into Coming soon page content =
+
+Yes, you can use WordPress standard text editor for inserting imgaes or videos.
+
+= Can I except Coming Soon and Maintenance mode plugin for several pages =
+
+Yes, we have such feature, you can except as many pages/posts as you need.
+
+= I purchased the [WordPress Coming soon](http://wpdevart.com/wordpress-coming-soon-plugin) pro version, but didn't download the pro file =
+
+Contact us at support@wpdevart.com and we will send you the pro version.
 
 ### The Best Offer From WpDevArt
 
@@ -295,6 +307,34 @@ We recommend you to take a look for this useful plugins - [WordPress booking cal
 *  Corrected some texts(comments) for developers.
 
 = 2.3.1 =
+
+*  Corrected comments in code.
+
+= 2.3.2 =
+
+*  Changed some comments in code.
+
+= 2.3.3 =
+
+*  Changed some options in admin menu.
+
+= 2.3.4 =
+
+*  Corrected comments in code.
+
+= 2.3.5 =
+
+*  Corrected comments.
+
+= 2.3.6 =
+
+* Fixed mistakes.
+
+= 2.3.7 =
+
+* Change some admin options.
+
+= 2.3.8 =
 
 *  Corrected comments in code.
 
@@ -457,7 +497,7 @@ We recommend you to take a look for this useful plugins - [WordPress booking cal
 
 *   Title(SEO) - Type here the Title for Search engines(It will be visable for search engines).
 *   Favicon - Here you can upload favicon for coming soon page.
-*   Enable Search Robots - Here you can enable or disable coming soon page for search robots. 
+*   Enable Search Robots - Here you can enable or disable coming soon page for search robots(If you disable this option then your website will disappear from search engines). 
 *   Meta Keywords - Type here meta keywords for coming soon page.
 *   Meta Description - Type here meta description for coming soon page.
 

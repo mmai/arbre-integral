@@ -172,7 +172,7 @@ figure, figcaption {
 
 
 #progressbar { 
-	height: 20px;  /* Can be anything */
+	height: 20px;  /* Here can be anything */
 	position: relative;
 	padding: 3px;
 	border-style: solid;
@@ -237,7 +237,7 @@ figure, figcaption {
 	
 	
 		
-/*    SUBSCRIBE*/
+/********************* SUBSCRIBE STYLE ********************/
 .subscribe_input{
 	display:inline-block;
 	box-sizing: border-box;

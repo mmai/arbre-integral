@@ -1,4 +1,4 @@
-/*span for pro version*/
+/*Pro version text*/
 .pro_feature{
 	font-size:13px;
 	font-weight:bold;
@@ -185,7 +185,7 @@
 	margin-left: 15px;
 }
 
-/*SAVING PARAMETERS*/
+/********************* SAVE BUTTON STYLE ********************/
 button{
 	webkit-transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) all !important;
 	-moz-transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) all !important;
