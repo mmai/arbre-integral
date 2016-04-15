@@ -490,7 +490,9 @@ html {
 
 html, body {
   height: 100%;
-  min-height: 100%; }
+  min-height: 100%;
+  -webkit-transition: background-color .35s ease-in;
+  transition: background-color .35s ease-in; }
 
 #ai-page, #app {
   height: 1px;
@@ -1173,5 +1175,4 @@ img.alignnone {
 /* ==========================================================================
    Team styles
    ========================================================================== */
-
 /*# sourceMappingURL=main.css.map */
