@@ -245,6 +245,13 @@ img.alignnone {
   text-align: left;
   & > * {
     text-align: left;
+    display: block;
+  }
+  div {
+    margin-bottom: 1em;
+  }
+  img {
+    margin: 1em;
   }
   a {
     padding: 0;

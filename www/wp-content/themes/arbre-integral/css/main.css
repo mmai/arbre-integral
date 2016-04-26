@@ -1062,7 +1062,12 @@ img.alignnone {
   display: block;
   text-align: left; }
   .ai-pdf > * {
-    text-align: left; }
+    text-align: left;
+    display: block; }
+  .ai-pdf div {
+    margin-bottom: 1em; }
+  .ai-pdf img {
+    margin: 1em; }
   .ai-pdf a {
     padding: 0;
     font-family: "Sanchez", serif;
@@ -1175,4 +1180,5 @@ img.alignnone {
 /* ==========================================================================
    Team styles
    ========================================================================== */
+
 /*# sourceMappingURL=main.css.map */

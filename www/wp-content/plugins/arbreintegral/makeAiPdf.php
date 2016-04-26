@@ -37,12 +37,6 @@ function createContent($id, $path, $visitorId){
     $pdf->setPrintHeader(false);
     $pdf->setPrintFooter(false);
 
-    //Page blanche
-    $pdf->AddPage();
-
-    //Page blanche
-    $pdf->AddPage();
-
     //Faux titre
     $pdf->AddPage();
     $pdf->ImageSVG($aiBooksSrc."ai_typo_arbre.svg", 37, 20, '', 8, '', '', 1, false);
@@ -80,7 +74,7 @@ function createContent($id, $path, $visitorId){
     $pdf->SetY(30);
     $pdf->SetX(30);
     $pdf->SetFont('sanchez', '', 9);
-    $pdf->MultiCell(47, 0, "Qu’enregistrerait-on dans une forêt (série de configurations ressemblantes) qu’on ne parcourrait qu’une seule fois sinon le risque de s’y perdre / (et d’ailleurs) à partir de quel stade d’enfoncement ? /", 0, 'L');
+    $pdf->MultiCell(55, 0, "« Qu’enregistrerait-on \ndans une forêt \n(série de configurations \nressemblantes) qu’on ne \nparcourrait qu’une seule fois \nsinon le risque de s’y perdre / \n(et d’ailleurs) à partir de \nquel stade d’enfoncement ? / »", 0, 'L');
     $pdf->SetY(65);
     $pdf->SetX(30);
     $pdf->SetFont('sanchez', '', 7);
@@ -88,7 +82,7 @@ function createContent($id, $path, $visitorId){
     $pdf->SetY(68);
     $pdf->SetX(30);
     $pdf->SetFont('sanchez', 'I', 7);
-    $pdf->Write(10, "La forêt de Porphyre");
+    $pdf->Write(10, "La Forêt de Porphyre");
 
     //Page blanche
     $pdf->AddPage();
@@ -102,6 +96,48 @@ function createContent($id, $path, $visitorId){
 
     //Page blanche
     $pdf->AddPage();
+
+    //======= Graine
+    $pdf->AddPage();
+    //Display vertical cerne text
+    $cerneTxt = "Graine";
+    $pdf->SetFont('sanchez', '', 7);
+    $pdf->setY(10 + $pdf->getStringWidth($cerneTxt));
+    $pdf->SetX(95);
+    $pdf->StartTransform();
+    $pdf->Rotate(90);
+    $pdf->Cell(0,0,$cerneTxt,0,0,'L',0,'');
+    $pdf->StopTransform();
+    //O central
+    $pdf->SetFont('sanchez', '', 22);
+    $pdf->setY(46);
+    $pdf->SetX(53);
+    $pdf->Cell(0,0,"0",0,0,'L',0,'');
+    $pdf->SetFont('sanchez', '', 18);
+    //E
+    $pdf->setY(31); $pdf->SetX(53);
+    $pdf->Cell(0,0,"E",0,0,'L',0,'');
+    //L 
+    $pdf->setY(35); $pdf->SetX(42);
+    $pdf->Cell(0,0,"L",0,0,'L',0,'');
+    //N 
+    $pdf->setY(35); $pdf->SetX(65);
+    $pdf->Cell(0,0,"N",0,0,'L',0,'');
+    //H 
+    $pdf->setY(47); $pdf->SetX(36);
+    $pdf->Cell(0,0,"H",0,0,'L',0,'');
+    //M 
+    $pdf->setY(47); $pdf->SetX(71);
+    $pdf->Cell(0,0,"M",0,0,'L',0,'');
+    //I 
+    $pdf->setY(59); $pdf->SetX(42);
+    $pdf->Cell(0,0,"I",0,0,'L',0,'');
+    //G 
+    $pdf->setY(59); $pdf->SetX(65);
+    $pdf->Cell(0,0,"G",0,0,'L',0,'');
+    //R 
+    $pdf->setY(64); $pdf->SetX(53);
+    $pdf->Cell(0,0,"R",0,0,'L',0,'');
 
     //=========== Main content
     $pdf->setPrintFooter(true);
@@ -154,21 +190,20 @@ function createContent($id, $path, $visitorId){
     $pdf->SetFont('sanchez', '', 7);
     $pdf->Write($lineHeight, 'OBJETS CONVERGENTS');
     $pdf->Ln();
-    $pdf->Ln();
     $pdf->SetFont('sanchez', 'I', $fontHeight);
     $pdf->Ln();
-    $pdf->Write($lineHeight, 'Le Bibliomane,');
-    $pdf->Ln();
+    $pdf->Write($lineHeight, 'Le Bibliomane, ');
+    // $pdf->Ln();
     $pdf->SetFont('sanchez', '', $fontHeight);
-    $pdf->Write($lineHeight, 'Les bords perdus, 2016.');
+    $pdf->Write($lineHeight, 'Les Bords Perdus, 2016.');
     $pdf->Ln();
     $pdf->Write($lineHeight, 'Avec Walid Salem');
     $pdf->Ln();
     $pdf->Ln();
 
     $pdf->SetFont('sanchez', 'I', $fontHeight);
-    $pdf->Write($lineHeight, 'Fluxus, destin pulsé,');
-    $pdf->Ln();
+    $pdf->Write($lineHeight, 'Fluxus, destin pulsé, ');
+    // $pdf->Ln();
     $pdf->SetFont('sanchez', '', $fontHeight);
     $pdf->Write($lineHeight, 'Atelier B A I E / Le poème en volume, 2015.');
     $pdf->Ln();
@@ -179,25 +214,27 @@ function createContent($id, $path, $visitorId){
     $pdf->Write($lineHeight, 'Le Recueil d’Écueils');
     // $pdf->Ln();
     $pdf->SetFont('sanchez', '', $fontHeight);
-    $pdf->Write($lineHeight, ', Sun / Sun, 2015.');
+    $pdf->Write($lineHeight, ', sun/sun, 2015.');
     $pdf->Ln();
     $pdf->Write($lineHeight, 'Avec Guillaume Bullat');
     $pdf->Ln();
     $pdf->Ln();
     $pdf->SetFont('sanchez', 'I', $fontHeight);
-    $pdf->Write($lineHeight, 'matcH');
+    $pdf->Write($lineHeight, 'matcH, ');
     // $pdf->Ln();
     $pdf->SetFont('sanchez', '', $fontHeight);
-    $pdf->Write($lineHeight, ', Atelier B A I E, 2013');
+    $pdf->Write($lineHeight, 'Atelier B A I E, 2013.');
     $pdf->Ln();
     $pdf->Write($lineHeight, 'Avec Éric des Garets');
     $pdf->Ln();
     $pdf->Ln();
     $pdf->SetFont('sanchez', 'I', $fontHeight);
-    $pdf->Write($lineHeight, 'GEANTs');
+    $pdf->Write($lineHeight, 'GÉANTs, ');
     // $pdf->Ln();
     $pdf->SetFont('sanchez', '', $fontHeight);
-    $pdf->Write($lineHeight, 'Voix édition, Collection Fireboox 2010 Avec Guillaume Bullat');
+    $pdf->Write($lineHeight, 'Voix édition, Collection Fireboox 2010.');
+    $pdf->Ln();
+    $pdf->Write($lineHeight, 'Avec Guillaume Bullat');
 
     $pdf->Ln();
     $pdf->Ln();
