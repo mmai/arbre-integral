@@ -322,11 +322,13 @@ function createCover($id, $svg){
     $pdf->Output($pdfFile, 'F');
 
     //Convert to image
-    $img = new Imagick();
-    $img->setResolution(800,800);
-    $img->readImage($pdfFile);
-    $img->setImageFormat('jpg');
-    $img->writeImage($imgFile);
+    exec('convert -density 800 '.$pdfFile.' '.$imgFile);
+    //Imagick not available on OVH shared servers
+    // $img = new Imagick();
+    // $img->setResolution(800,800);
+    // $img->readImage($pdfFile);
+    // $img->setImageFormat('jpg');
+    // $img->writeImage($imgFile);
 
   }
 }
