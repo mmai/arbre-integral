@@ -260,13 +260,18 @@ img.alignnone {
 #ai-pdf--apercu {
   text-align: center;
   img {
-    margin: 0.5em;
+    margin: 1em;
   }
 }
 .ai-pdf-pending {
   font-size: 1.25em;
   line-height: 2em;
   text-align: center;
+}
+
+a.img-zoomable {
+  border: none;
+  cursor: zoom-in;
 }
 
 .end-content {
@@ -343,6 +348,38 @@ img.alignnone {
 			color: $pink;
 		}
 	}
+}
+
+/*** lightbox ***/
+.lightbox {
+	/** Default lightbox to hidden */
+	display: none;
+
+	/** Position and style */
+	position: fixed;
+	z-index: 999;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	top: 0;
+	left: 0;
+	background: rgba(0,0,0,0.8);
+  cursor: zoom-out;
+}
+
+.lightbox img {
+	/** Pad the lightbox image */
+	max-width: 90%;
+	max-height: 80%;
+	margin-top: 2%;
+}
+
+.lightbox:target {
+	/** Remove default browser outline */
+	outline: none;
+
+	/** Unhide lightbox **/
+	display: block;
 }
 
 /*** Bbpress custom **/
