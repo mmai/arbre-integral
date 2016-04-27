@@ -1066,12 +1066,15 @@ img.alignnone {
     display: block; }
   .ai-pdf div {
     margin-bottom: 1em; }
-  .ai-pdf img {
-    margin: 1em; }
   .ai-pdf a {
     padding: 0;
     font-family: "Sanchez", serif;
     font-size: 1em; }
+
+.ai-pdf--apercu {
+  text-align: center; }
+  .ai-pdf--apercu img {
+    margin: 0.5em; }
 
 .ai-pdf-pending {
   font-size: 1.25em;

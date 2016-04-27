@@ -250,13 +250,16 @@ img.alignnone {
   div {
     margin-bottom: 1em;
   }
-  img {
-    margin: 1em;
-  }
   a {
     padding: 0;
     font-family: "Sanchez", serif;
     font-size:1em;
+  }
+}
+.ai-pdf--apercu {
+  text-align: center;
+  img {
+    margin: 0.5em;
   }
 }
 .ai-pdf-pending {
