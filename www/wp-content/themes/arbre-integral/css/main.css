@@ -1057,23 +1057,24 @@ img.alignnone {
 /********* 
  * henri *
  *********/
-.ai-pdf {
+#ai-pdf {
   height: 90%;
   display: block;
   text-align: left; }
-  .ai-pdf > * {
+  #ai-pdf > * {
     text-align: left;
-    display: block; }
-  .ai-pdf div {
+    display: block;
+    float: none; }
+  #ai-pdf div {
     margin-bottom: 1em; }
-  .ai-pdf a {
+  #ai-pdf a {
     padding: 0;
     font-family: "Sanchez", serif;
     font-size: 1em; }
 
-.ai-pdf--apercu {
+#ai-pdf--apercu {
   text-align: center; }
-  .ai-pdf--apercu img {
+  #ai-pdf--apercu img {
     margin: 0.5em; }
 
 .ai-pdf-pending {

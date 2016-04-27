@@ -16,7 +16,7 @@ export function renderPdf(editionId){
       h('h2', `Sauvegardez votre livre`),
       h("div", "Grâce à votre lecture, l’Arbre Intégral a terminé son évolution."),
       h("div", ["En circulant dans le réseau de ses branches, vous avez généré ", h("strong", "un livre unique.") ]),
-      h("div.ai-pdf--apercu", [
+      h("div#ai-pdf--apercu", [
         h('img', {attrs:{src:`${assetsDir}/cover.png`, alt:"couverture"}}),
         h('img', {attrs:{src:`${assetsDir}/double-page.png`, alt:"interieur"}})
       ]),
@@ -40,7 +40,7 @@ export function renderPdf(editionId){
   }
 
   return h('div.main-container', [ 
-    h('div.navigate-content.ai-pdf', content),
+    h('div#ai-pdf.navigate-content', content),
     h("div.breadcrumb", [
       h('div', 'Édition du parcours')
     ])
