@@ -2,12 +2,12 @@
 # This file is distributed under the same license as the Administration package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2016-04-13 06:41:36+0000\n"
+"PO-Revision-Date: 2016-04-25 06:28:28+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: GlotPress/1.1.0-alpha\n"
+"X-Generator: GlotPress/2.1.0-alpha\n"
 "Project-Id-Version: Administration\n"
 
 #. translators: default start of the week. 0 = Sunday, 1 = Monday
@@ -26,7 +26,7 @@ msgid "0"
 msgstr "Europe/Rome"
 
 #. translators: %s: wp_add_inline_script()
-#: wp-admin/about.php:155
+#: wp-admin/about.php:163
 msgid "Better support has been added for script header/footer dependencies. New %s enables adding extra code to registered scripts."
 msgstr "Un miglior supporto per le dipendenze dello script in testata/piè di pagina è stato aggiunto. Il nuovo %s permette di aggiungere codice extra agli script registrati."
 
@@ -39,98 +39,98 @@ msgid "Release Deputy"
 msgstr "Release Deputy"
 
 #. translators: %s: URL to customizer
-#: wp-admin/about.php:75
+#: wp-admin/about.php:83
 msgid "Preview mobile, tablet, and desktop views directly in the <a href=\"%s\" class=\"load-customize\">customizer</a>."
 msgstr "Guarda l'anteprima su mobile, tablet e pc in <a href=\"%s\" class=\"load-customize\">personalizza</a>."
 
-#: wp-admin/about.php:79
+#: wp-admin/about.php:87
 msgid "Preview mobile, tablet, and desktop views directly in the customizer."
 msgstr "Guarda in Personalizza l'anteprima su mobile, tablet e pc."
 
-#: wp-admin/about.php:69
+#: wp-admin/about.php:77
 msgid "Make sure your site looks great on all screens!"
 msgstr "Verifica che il tuo sito sia perfetto su tutti gli schermi!"
 
 #. translators: %s: URL to the development post of the new feature
-#: wp-admin/about.php:165
+#: wp-admin/about.php:173
 msgid "Embed templates have been split into parts and can be <a href=\"%s\">directly overridden by themes</a> via the template hierarchy."
 msgstr "L'incorporazione dei modelli è stata divisa in parti e può essere  <a href=\"%s\">direttamente sovrascritta dai temi</a> attraverso la gerarchia dei modelli."
 
-#: wp-admin/about.php:161
+#: wp-admin/about.php:169
 msgid "Better Embed Templates"
 msgstr "Incorporazione dei modelli migliorata"
 
 #. translators: 1: URL to Menus section of the customizer, 2: URL to Widgets
 #. section of the customizer
-#: wp-admin/about.php:125
+#: wp-admin/about.php:133
 msgid "See it in action with <a href=\"%1$s\" class=\"load-customize\">Menus</a> or <a href=\"%2$s\" class=\"load-customize\">Widgets</a>."
 msgstr "Guarda come funziona con  <a href=\"%1$s\" class=\"load-customize\">Menu</a> o <a href=\"%2$s\" class=\"load-customize\">Widget</a>."
 
-#: wp-admin/about.php:144
+#: wp-admin/about.php:152
 msgid "JavaScript Library Updates"
 msgstr "Aggiornamenti della libreria javascript"
 
-#: wp-admin/about.php:145
+#: wp-admin/about.php:153
 msgid "jQuery 1.12.3, jQuery Migrate 1.4.0, Backbone 1.2.3, and Underscore 1.8.3 are bundled."
 msgstr "jQuery 1.12.3, jQuery Migrate 1.4.0, Backbone 1.2.3, e Underscore 1.8.3 ora sono nel pacchetto.."
 
-#: wp-admin/about.php:151
+#: wp-admin/about.php:159
 msgid "Script Loader Improvements"
 msgstr "Miglioramenti nello script di caricamento"
 
 #. translators: %s: URL to the development post of the new feature
-#: wp-admin/about.php:112
+#: wp-admin/about.php:120
 msgid "The customizer now supports a <a href=\"%s\">comprehensive framework</a> for rendering parts of the preview without rewriting your PHP code in JavaScript."
 msgstr "È stato aggiunto a Personalizza un <a href=\"%s\">framework generale </a> per l'esecuzione di parti dell'anteprima senza riscrivere il codice PHP in Javascript."
 
 #. translators: %s: URL to Menus section of the customizer
-#: wp-admin/about.php:119
+#: wp-admin/about.php:127
 msgid "See it in action with <a href=\"%s\" class=\"load-customize\">Menus</a>."
 msgstr "Guardalo in funzione nei <a href=\"%s\" class=\"load-customize\">Menu</a>."
 
-#: wp-admin/about.php:95
+#: wp-admin/about.php:103
 msgid "The Twenty Fifteen and Twenty Sixteen themes have been updated to support custom logos, which can be found in the Site Identity section of the customizer."
 msgstr "I temi Twenty Fifteen e Twenty Sixteen sono stati aggiornati per supportare i loghi personalizzati, funzionalità che si possono trovare nella sezione Identità del sito del menu Personalizza."
 
-#: wp-admin/about.php:134
+#: wp-admin/about.php:142
 msgid "Smart Image Resizing"
 msgstr "Miglior ridimensionamento dell'immagine"
 
 #. translators: %s: URL to the development post of the new feature
-#: wp-admin/about.php:138
+#: wp-admin/about.php:146
 msgid "Generated images now load up to 50&#37; faster with no noticeable quality loss. <a href=\"%s\">It&#8217;s really cool</a>."
 msgstr "Le immagini generate ora sono caricate fino al 50&#37; più velocemente senza perdere qualità. <a href=\"%s\">È davvero fantastico</a>."
 
-#: wp-admin/about.php:108
+#: wp-admin/about.php:116
 msgid "Selective Refresh"
 msgstr "Ricaricamento selettivo"
 
 #. translators: %s: URL to Site Identity section of the customizer
-#: wp-admin/about.php:91
+#: wp-admin/about.php:99
 msgid "Your theme supports custom logos! Try it out right now in the <a href=\"%s\" class=\"load-customize\">Site Identity</a> section of the customizer."
 msgstr "Il tema supporta la personalizzazione dei loghi! Prova immediatamente nella sezione  <a href=\"%s\" class=\"load-customize\">Identità del sito</a> del menu Personalizza."
 
-#: wp-admin/about.php:85
+#: wp-admin/about.php:93
 msgid "Custom Logos"
 msgstr "Loghi personalizzati"
 
-#: wp-admin/about.php:86
+#: wp-admin/about.php:94
 msgid "Themes can now support logos for your business or brand."
 msgstr "I temi ora supportano i loghi per il tuo lavoro o brand."
 
-#: wp-admin/about.php:58
+#: wp-admin/about.php:66
 msgid "Do you enjoy using formatting shortcuts for lists and headings? Now they&#8217;re even more useful, with horizontal lines and <code>&lt;code&gt;</code>."
 msgstr "Ti piace usare la formattazione degli shortcuts per le liste e i titoli? Ora essi sono anche più utili, con le linee orizzontali e i <code>&lt;code&gt;</code>."
 
-#: wp-admin/about.php:65
+#: wp-admin/about.php:73
 msgid "Customization Improvements"
 msgstr "Miglioramenti delle possibilità di personalizzazione"
 
-#: wp-admin/about.php:68
+#: wp-admin/about.php:76
 msgid "Live Responsive Previews"
 msgstr "Anteprime Responsive in tempo reale"
 
-#: wp-admin/about.php:53
+#: wp-admin/about.php:61
 msgid "Stay focused on your writing with a less distracting interface that keeps you in place and allows you to easily link to your content."
 msgstr "Concentrati su ciò che scrivi con una interfaccia pulita che ti permette facilmente di inserire link ai tuoi contenuti senza spostarti."
 
@@ -138,11 +138,11 @@ msgstr "Concentrati su ciò che scrivi con una interfaccia pulita che ti permett
 msgid "Thank you for updating! WordPress %s streamlines your workflow, whether you&#8217;re writing or building your site."
 msgstr "Grazie per aver aggiornato! WordPress %s velocizza e semplifica il tuo lavoro, sia che tu stia scrivendo o costruendo il tuo sito."
 
-#: wp-admin/about.php:49
+#: wp-admin/about.php:57
 msgid "Editing Improvements"
 msgstr "Miglioramenti nella modifica"
 
-#: wp-admin/about.php:52
+#: wp-admin/about.php:60
 msgid "Inline Linking"
 msgstr "Link inline"
 
@@ -636,7 +636,7 @@ msgid "(Currently set to: %s)"
 msgstr "(Attualmente impostato a: %s)"
 
 #. translators: %s: WordPress version number
-#: wp-admin/about.php:200
+#: wp-admin/about.php:208
 msgid "<strong>Version %s</strong> addressed one security issue."
 msgstr "La <strong>versione %s</strong> corregge un problema di sicurezza."
 
@@ -658,15 +658,15 @@ msgstr "https://en.gravatar.com/"
 msgid "Profile Picture"
 msgstr "Immagine profilo"
 
-#: wp-admin/about.php:191
+#: wp-admin/about.php:199
 msgid "Maintenance Releases"
 msgstr "Release di Manutenzione"
 
-#: wp-admin/about.php:194
+#: wp-admin/about.php:202
 msgid "Security Releases"
 msgstr "Release di Sicurezza"
 
-#: wp-admin/about.php:197
+#: wp-admin/about.php:205
 msgid "Maintenance and Security Releases"
 msgstr "Release di Manutenzione e Sicurezza"
 
@@ -1254,7 +1254,7 @@ msgstr "In risposta a %s."
 msgid "The current theme does not support uploading a custom header image."
 msgstr "Il tema attuale non prevede il caricamento di un immagine personalizzata di testata."
 
-#: wp-admin/about.php:57
+#: wp-admin/about.php:65
 msgid "Formatting Shortcuts"
 msgstr "Scorciatoie di formattazione"
 
@@ -1629,7 +1629,7 @@ msgstr "Aggiornare il sito a <a href=\"https://codex.wordpress.org/Version_%1$s\
 
 #: wp-admin/update-core.php:181
 msgid "<strong>Important:</strong> before updating, please <a href=\"https://codex.wordpress.org/WordPress_Backups\">back up your database and files</a>. For help with updates, visit the <a href=\"https://codex.wordpress.org/Updating_WordPress\">Updating WordPress</a> Codex page."
-msgstr "<strong>Importante:</strong> prima di aggiornare <a href=\"https://codex.wordpress.org/WordPress_Backups\">effettuare il backup del database e dei file</a>. Per ottenere aiuto con gli aggiornamenti visitare la pagina del Codex: <a href=\"https://codex.wordpress.org/Updating_WordPress\">Aggiornare WordPress</a> (in inglese)."
+msgstr "<strong>Importante:</strong> prima di aggiornare <a href=\"https://codex.wordpress.org/WordPress_Backups\">fai un backup del database e dei file</a>. Per ottenere aiuto con gli aggiornamenti visita la pagina del Codex: <a href=\"https://codex.wordpress.org/Updating_WordPress\">Aggiornare WordPress</a> (in inglese)."
 
 #: wp-admin/theme-install.php:107
 msgid "<a href=\"https://codex.wordpress.org/Using_Themes#Adding_New_Themes\" target=\"_blank\">Documentation on Adding New Themes</a>"
@@ -1678,7 +1678,7 @@ msgstr "L'aggiornamento non può essere installato perchè WordPress %1$s richie
 
 #: wp-admin/includes/update.php:236
 msgid "<a href=\"https://codex.wordpress.org/Version_%1$s\">WordPress %1$s</a> is available! Please notify the site administrator."
-msgstr "&Egrave; disponibile <a href=\"https://codex.wordpress.org/Version_%1$s\">WordPress %1$s</a>! Si prega di avvisare l'amministratore del sito."
+msgstr "&Egrave; disponibile <a href=\"https://codex.wordpress.org/Version_%1$s\">WordPress %1$s</a>! Avvisa l'amministratore del sito."
 
 #: wp-admin/install.php:238
 msgid "You cannot install because <a href=\"https://codex.wordpress.org/Version_%1$s\">WordPress %1$s</a> requires PHP version %2$s or higher. You are running version %3$s."
@@ -2834,7 +2834,7 @@ msgstr "%1$s MB (%2$s%%) di spazio utilizzato"
 
 #: wp-admin/options-reading.php:33
 msgid "When this setting is in effect, a reminder is shown in the At a Glance box of the Dashboard that says, &#8220;Search Engines Discouraged,&#8221; to remind you that your site is not being crawled."
-msgstr "Quando questa impostazione è attiva, una segnalazione appare nel riquadro Stato attuale della Bacheca che dice, &#8220;Motori di ricerca bloccati,&#8221; per ricordarti che il tuo sito non è indicizzabile dai motori."
+msgstr "Quando questa impostazione è attiva, una segnalazione appare nel riquadro In sintesi della Bacheca che dice, &#8220;Motori di ricerca scoraggiati,&#8221; per ricordarti che il tuo sito non è indicizzabile dai motori."
 
 #: wp-admin/includes/dashboard.php:39
 msgid "At a Glance"
@@ -3113,7 +3113,7 @@ msgstr "[%1$s] Il tuo sito è aggiornato a WordPress %2$s"
 #. translators: 1: Site name, 2: WordPress version number.
 #: wp-admin/includes/class-wp-upgrader.php:3305
 msgid "[%1$s] WordPress %2$s is available. Please update!"
-msgstr "[%1$s] &Egrave; disponibile  WordPress %2$s. Si prega di aggiornare!"
+msgstr "[%1$s] &Egrave; disponibile  WordPress %2$s. Aggiorna!"
 
 #. translators: 1: Site name.
 #: wp-admin/includes/class-wp-upgrader.php:3310
@@ -4021,7 +4021,7 @@ msgstr "Il gruppo di opzioni sulla privacy è stato rimosso. Utilizza un altro g
 
 #: wp-admin/includes/dashboard.php:333
 msgid "Search Engines Discouraged"
-msgstr "Motori di ricerca bloccati"
+msgstr "Motori di ricerca scoraggiati"
 
 #: wp-admin/includes/dashboard.php:1444
 msgid "Welcome to WordPress!"
@@ -4705,7 +4705,7 @@ msgstr "Se non desideri utilizzare più il sito %s, puoi eliminarlo utilizzando 
 
 #: wp-admin/ms-delete-site.php:16
 msgid "You do not have sufficient permissions to delete this site."
-msgstr "Non si dispone di permessi sufficienti per eliminare questo sito."
+msgstr "Non hai permessi sufficienti per eliminare questo sito."
 
 #: wp-admin/ms-delete-site.php:78
 msgid "Thank you. Please check your email for a link to confirm your action. Your site will not be deleted until this link is clicked."
@@ -4760,7 +4760,7 @@ msgstr "Se si è arrivati a questa schermata per caso e lo scopo era di visitare
 
 #: wp-admin/includes/ms.php:660 wp-admin/includes/ms.php:662
 msgid "You attempted to access the \"%1$s\" dashboard, but you do not currently have privileges on this site. If you believe you should be able to access the \"%1$s\" dashboard, please contact your network administrator."
-msgstr "Si è tentato di accedere alla bacheca \"%1$s\", ma al momento non si dispone di privilegi su questo sito. Se si ritiene che si dovrebbe essere in grado di accedere alla bacheca \"%1$s\", si prega di contattare l'amministratore di rete."
+msgstr "Hai cercato di accedere alla bacheca \"%1$s\", ma al momento non disponi dei permessi necessari su questo sito. Se pensi che questo sia un errore e che invece dovresti essere in grado di accedere alla bacheca \"%1$s\", contatta l'amministratore di rete."
 
 #: wp-admin/includes/ms.php:505
 msgid "MB (Leave blank for network default)"
@@ -4973,7 +4973,7 @@ msgstr "Il tema attivo è rotto. Ritornare al tema predefinito."
 #: wp-admin/custom-header.php:787 wp-admin/custom-header.php:923
 #: wp-admin/custom-header.php:1234
 msgid "Image could not be processed. Please go back and try again."
-msgstr "L'immagine non può essere elaborata. Si prega di tornare indietro e riprovare."
+msgstr "L'immagine non può essere elaborata. Torna indietro e riprova."
 
 #. translators: 1: table name, 2: error message,
 #: wp-admin/maint/repair.php:101
@@ -5022,27 +5022,27 @@ msgstr "Visualizza la Barra strumenti quando si visualizza il sito"
 
 #. translators: 1: WordPress version number, 2: plural number of bugs. Singular
 #. security issue.
-#: wp-admin/about.php:209
+#: wp-admin/about.php:217
 msgid "<strong>Version %1$s</strong> addressed a security issue and fixed %2$s bug."
 msgid_plural "<strong>Version %1$s</strong> addressed a security issue and fixed %2$s bugs."
 msgstr[0] "<strong>La versione %1$s</strong> corregge un problema di sicurezza e %2$s bug."
 msgstr[1] "<strong>La versione %1$s</strong> corregge un problema di sicurezza e %2$s bug."
 
 #. translators: %s: Codex URL
-#: wp-admin/about.php:217
+#: wp-admin/about.php:45 wp-admin/about.php:225
 msgid "For more information, see <a href=\"%s\">the release notes</a>."
 msgstr "Per ulteriori informazioni consulta <a href=\"%s\">le note di versione</a>."
 
 #. translators: 1: WordPress version number, 2: plural number of bugs. More
 #. than one security issue.
-#: wp-admin/about.php:213
+#: wp-admin/about.php:221
 msgid "<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bug."
 msgid_plural "<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bugs."
 msgstr[0] "<strong>La versione %1$s</strong> corregge alcuni problemi di sicurezza e %2$s bug."
 msgstr[1] "<strong>La versione %1$s</strong> corregge alcuni problemi di sicurezza e %2$s bug."
 
 #. translators: 1: WordPress version number, 2: plural number of bugs.
-#: wp-admin/about.php:205
+#: wp-admin/about.php:43 wp-admin/about.php:213
 msgid "<strong>Version %1$s</strong> addressed %2$s bug."
 msgid_plural "<strong>Version %1$s</strong> addressed %2$s bugs."
 msgstr[0] "<strong>La versione %1$s</strong> corregge %2$s bug."
@@ -5052,7 +5052,7 @@ msgstr[1] "<strong>La versione %1$s</strong> corregge %2$s bug."
 msgid "Welcome to your WordPress Dashboard! This is the screen you will see when you log in to your site, and gives you access to all the site management features of WordPress. You can get help for any screen by clicking the Help tab in the upper corner."
 msgstr "Benvenuti nella Bacheca di WordPress! Questa è la pagina che vedrai quando esegui il login al sito e dà accesso a tutte le funzioni per la gestione di WordPress. Puoi ottenere aiuto per qualsiasi sezione facendo click sulla scheda Aiuto nell'angolo in alto."
 
-#: wp-admin/about.php:196
+#: wp-admin/about.php:204
 msgid "Maintenance and Security Release"
 msgstr "Aggiornamento di sicurezza e manutenzione"
 
@@ -5060,16 +5060,16 @@ msgstr "Aggiornamento di sicurezza e manutenzione"
 msgid "What&#8217;s New"
 msgstr "Che novità ci sono"
 
-#: wp-admin/about.php:193
+#: wp-admin/about.php:201
 msgid "Security Release"
 msgstr "Aggiornamento di sicurezza"
 
-#: wp-admin/about.php:190
+#: wp-admin/about.php:42 wp-admin/about.php:198
 msgid "Maintenance Release"
 msgstr "Aggiornamento di manutenzione"
 
 #. translators: %s: WordPress version number
-#: wp-admin/about.php:202
+#: wp-admin/about.php:210
 msgid "<strong>Version %s</strong> addressed some security issues."
 msgstr "<strong>La versione %s</strong> corregge alcuni problemi di sicurezza."
 
@@ -5077,7 +5077,7 @@ msgstr "<strong>La versione %s</strong> corregge alcuni problemi di sicurezza."
 msgid "This screen allows you to choose your permalink structure. You can choose from common settings or create custom URL structures."
 msgstr "Questa schermata permette di scegliere la propria struttura di permalink predefinita. È possibile scegliere tra le impostazioni predefinite o creare strutture di URL personalizzate."
 
-#: wp-admin/about.php:175
+#: wp-admin/about.php:183
 msgid "Return to Updates"
 msgstr "Torna alla pagina Aggiornamenti"
 
@@ -5369,11 +5369,11 @@ msgstr "Probabile inclusione diretta di wp-admin/includes/template.php allo scop
 msgid "Welcome to WordPress %s"
 msgstr "Benvenuto su WordPress %s"
 
-#: wp-admin/about.php:178
+#: wp-admin/about.php:186
 msgid "Go to Dashboard &rarr; Home"
 msgstr "Vai a Dashboard &rarr; Home"
 
-#: wp-admin/about.php:175
+#: wp-admin/about.php:183
 msgid "Return to Dashboard &rarr; Updates"
 msgstr "Ritorna a Bacheca &rarr; Aggiornamenti"
 
@@ -5381,7 +5381,7 @@ msgstr "Ritorna a Bacheca &rarr; Aggiornamenti"
 msgid "WordPress is created by a worldwide team of passionate individuals."
 msgstr "WordPress è creato da un team internazionale di appassionati."
 
-#: wp-admin/about.php:104
+#: wp-admin/about.php:112
 msgid "Under the Hood"
 msgstr "Sotto il cofano"
 
@@ -5520,7 +5520,7 @@ msgstr "ERRORE: si sta rispondendo ad un commento ad un articolo in bozza."
 #: wp-admin/includes/ajax-actions.php:1019
 #: wp-admin/includes/ajax-actions.php:1108
 msgid "ERROR: please type a comment."
-msgstr "ERRORE: si prega di inserire un commento."
+msgstr "ERRORE: inserisci un commento."
 
 #: wp-admin/index.php:45
 msgid "The left-hand navigation menu provides links to all of the WordPress administration screens, with submenu items displayed on hover. You can minimize this menu to a narrow icon strip by clicking on the Collapse Menu arrow at the bottom."
@@ -5594,7 +5594,7 @@ msgstr "Aggiungi nuovo utente"
 #: wp-admin/options-media.php:13 wp-admin/options-permalink.php:13
 #: wp-admin/options-reading.php:13 wp-admin/options-writing.php:13
 msgid "You do not have sufficient permissions to manage options for this site."
-msgstr "Non si dispone dei permessi sufficienti per gestire le impostazioni di questo sito."
+msgstr "Non hai permessi sufficienti per gestire le impostazioni di questo sito."
 
 #: wp-admin/menu.php:209
 msgctxt "plugin editor"
@@ -5831,7 +5831,7 @@ msgstr "Sembra che tu stia utilizzando una versione non sicura di %s. Utilizzand
 
 #: wp-admin/includes/nav-menu.php:923
 msgid "There are some invalid menu items. Please check or delete them."
-msgstr "Vi sono alcune voci di menu non valide. Si prega di controllarle o cancellarle."
+msgstr "Alcune voci di menu non sono valide. Controllale o cancellale."
 
 #: wp-admin/edit-tag-form.php:121 wp-admin/edit-tags.php:470
 #: wp-admin/includes/class-wp-terms-list-table.php:177
@@ -6037,7 +6037,7 @@ msgstr "Formato articolo predefinito"
 #: wp-admin/update-core.php:650 wp-admin/update-core.php:678
 #: wp-admin/update-core.php:708
 msgid "You do not have sufficient permissions to update this site."
-msgstr "Non si dispone di permessi sufficienti per aggiornare questo sito."
+msgstr "Non hai permessi sufficienti per aggiornare questo sito."
 
 #: wp-admin/user-edit.php:207 wp-admin/users.php:489
 msgctxt "user"
@@ -6236,7 +6236,7 @@ msgstr "Ricordarsi di fare clic su Aggiorna media per salvare i metadati inserit
 
 #: wp-admin/edit-form-advanced.php:407 wp-admin/media.php:77
 msgid "Note that you crop the image by clicking on it (the Crop icon is already selected) and dragging the cropping frame to select the desired part. Then click Save to retain the cropping."
-msgstr "SI noti che si ritaglia una immagine facendo clic su di essa (l'icona di Ritaglio è già selezionata) e trascinando il rettangolo di ritaglio per selezionare la parte desiderata. Quindi fare clic su Salva per effettuare il ritaglio."
+msgstr "Per ritagliare un&#8217;immagine fai clic su di essa (l'icona di Ritaglio è già selezionata) e trascina il rettangolo di ritaglio per selezionare la parte desiderata. Quindi fai clic su Salva per effettuare il ritaglio."
 
 #: wp-admin/edit-form-advanced.php:406 wp-admin/media.php:76
 msgid "For images only, you can click on Edit Image under the thumbnail to expand out an inline image editor with icons for cropping, rotating, or flipping the image as well as for undoing and redoing. The boxes on the right give you more options for scaling the image, for cropping it, and for cropping the thumbnail in a different way than you crop the original image. You can click on Help in those boxes to get more information."
@@ -6980,55 +6980,55 @@ msgstr "Nuovo sito WordPress"
 
 #: wp-admin/update.php:172 wp-admin/update.php:193
 msgid "You do not have sufficient permissions to update themes for this site."
-msgstr "Non si dispone di permessi sufficienti per aggiornare i temi di questo sito."
+msgstr "Non hai permessi sufficienti per aggiornare i temi di questo sito."
 
 #: wp-admin/includes/ajax-actions.php:3093 wp-admin/update.php:24
 #: wp-admin/update.php:50 wp-admin/update.php:71
 msgid "You do not have sufficient permissions to update plugins for this site."
-msgstr "Non si dispone di permessi sufficienti per aggiornare i plugin di questo sito."
+msgstr "Non hai permessi sufficienti per aggiornare i plugin di questo sito."
 
 #: wp-admin/theme-install.php:16 wp-admin/update.php:219
 #: wp-admin/update.php:249
 msgid "You do not have sufficient permissions to install themes on this site."
-msgstr "Non si dispone di permessi sufficienti per installare temi su questo sito."
+msgstr "Non hai permessi sufficienti per installare temi su questo sito."
 
 #: wp-admin/theme-editor.php:18
 msgid "You do not have sufficient permissions to edit templates for this site."
-msgstr "Non si dispone di permessi sufficienti per modificare i template di questo sito."
+msgstr "Non hai permessi sufficienti per modificare i template di questo sito."
 
 #: wp-admin/plugins.php:33 wp-admin/plugins.php:72 wp-admin/plugins.php:150
 msgid "You do not have sufficient permissions to activate plugins for this site."
-msgstr "Non si dispone di permessi sufficienti per attivare plugin per questo sito."
+msgstr "Non hai permessi sufficienti per attivare plugin per questo sito."
 
 #: wp-admin/plugin-install.php:18 wp-admin/update.php:96
 #: wp-admin/update.php:144
 msgid "You do not have sufficient permissions to install plugins on this site."
-msgstr "Non si dispone di permessi sufficienti per installare plugin su questo sito."
+msgstr "Non hai permessi sufficienti per installare plugin su questo sito."
 
 #: wp-admin/plugins.php:171 wp-admin/plugins.php:196
 msgid "You do not have sufficient permissions to deactivate plugins for this site."
-msgstr "Non si dispone di permessi sufficienti per disattivare plugin per questo sito."
+msgstr "Non hai permessi sufficienti per disattivare plugin per questo sito."
 
 #: wp-admin/plugins.php:231
 msgid "You do not have sufficient permissions to delete plugins for this site."
-msgstr "Non disponi di permessi sufficienti per eliminare i plugin di questo sito."
+msgstr "Non hai permessi sufficienti per eliminare i plugin di questo sito."
 
 #: wp-admin/link-add.php:13
 msgid "You do not have sufficient permissions to add links to this site."
-msgstr "Non si dispone di permessi sufficienti per aggiungere dei link a questo sito."
+msgstr "Non hai permessi sufficienti per aggiungere dei link a questo sito."
 
 #: wp-admin/includes/bookmark.php:32 wp-admin/includes/bookmark.php:315
 #: wp-admin/link-manager.php:12 wp-admin/link-manager.php:71
 msgid "You do not have sufficient permissions to edit the links for this site."
-msgstr "Non si dispone di permessi sufficienti per modificare i link di questo sito."
+msgstr "Non hai permessi sufficienti per modificare i link di questo sito."
 
 #: wp-admin/export.php:13
 msgid "You do not have sufficient permissions to export the content of this site."
-msgstr "Non si dispone di permessi sufficienti per esportare contenuti da questo sito."
+msgstr "Non hai permessi sufficienti per esportare contenuti da questo sito."
 
 #: wp-admin/import.php:15
 msgid "You do not have sufficient permissions to import content in this site."
-msgstr "Non si dispone di permessi sufficienti per importare contenuti in questo sito."
+msgstr "Non hai permessi sufficienti per importare contenuti in questo sito."
 
 #: wp-admin/import.php:64
 msgid "If you have posts or comments in another system, WordPress can import those into this site. To get started, choose a system to import from below:"
@@ -7036,7 +7036,7 @@ msgstr "Se si hanno articoli o commenti su un&#8217;altra piattaforma di bloggin
 
 #: wp-admin/plugin-editor.php:18
 msgid "You do not have sufficient permissions to edit plugins for this site."
-msgstr "Non si dispone di permessi sufficienti per modificare i plugin di questo sito."
+msgstr "Non hai permessi sufficienti per modificare i plugin di questo sito."
 
 #: wp-admin/includes/nav-menu.php:326 wp-admin/includes/nav-menu.php:601
 msgid "No items."
@@ -7252,7 +7252,7 @@ msgstr "Il menu è stato cancellato."
 
 #: wp-admin/plugins.php:13
 msgid "You do not have sufficient permissions to manage plugins for this site."
-msgstr "Non si dispone di permessi sufficienti per gestire i plugin di questo sito."
+msgstr "Non hai permessi sufficienti per gestire i plugin di questo sito."
 
 #: wp-admin/options-general.php:66
 msgid "In a few words, explain what this site is about."
@@ -7270,7 +7270,7 @@ msgstr "Il gruppo delle opzioni varie è stato rimosso. Utilizzare un altro grup
 
 #: wp-admin/options.php:163
 msgid "You do not have sufficient permissions to modify unregistered settings for this site."
-msgstr "Non si dispone di permessi sufficienti per modificare le impostazioni non registrate per questo sito."
+msgstr "Non hai permessi sufficienti per modificare le impostazioni non registrate per questo sito."
 
 #: wp-admin/includes/nav-menu.php:946
 msgid "Link Target"
@@ -7391,7 +7391,7 @@ msgid_plural "Must-Use <span class=\"count\">(%s)</span>"
 msgstr[0] "Utilizzo obbligatorio <span class=\"count\">(%s)</span>"
 msgstr[1] "Utilizzo obbligatorio <span class=\"count\">(%s)</span>"
 
-#: wp-admin/about.php:178
+#: wp-admin/about.php:186
 msgid "Go to Dashboard"
 msgstr "Vai alla bacheca"
 
@@ -7643,7 +7643,7 @@ msgstr "Un aggiornamento automatico di WordPress non si è installato completame
 
 #: wp-admin/includes/update.php:556
 msgid "An automated WordPress update has failed to complete! Please notify the site administrator."
-msgstr "Un aggiornamento automatico di WordPress non si è installato completamente! Si prega di informare l'amministratore del sito."
+msgstr "Un aggiornamento automatico di WordPress non si è installato completamente! Informa l'amministratore del sito."
 
 #: wp-admin/includes/upgrade.php:74
 msgid "<strong><em>Note that password</em></strong> carefully! It is a <em>random</em> password that was generated just for you."
@@ -8630,7 +8630,7 @@ msgstr "Utilizzare sempre https quando si visita il pannello di amministrazione"
 #: wp-admin/user-edit.php:80 wp-admin/user-edit.php:113
 #: wp-admin/user-edit.php:166
 msgid "You do not have permission to edit this user."
-msgstr "Non si dispone del permesso di modificare questo utente."
+msgstr "Non hai il permesso per modificare questo utente."
 
 #: wp-admin/user-edit.php:181
 msgid "User updated."
@@ -8873,7 +8873,7 @@ msgstr "Seleziona la parte dell'immagine che desideri utilizzare nella testata."
 
 #: wp-admin/custom-header.php:969
 msgid "You do not have permission to customize headers."
-msgstr "Non si dispone del permesso di personalizzare la testata."
+msgstr "Non hai il permesso per personalizzare la testata."
 
 #. translators: %s: link name
 #. translators: %s: attachment title
@@ -10329,7 +10329,7 @@ msgstr "(Lascia a 0 per non valutare)"
 
 #: wp-admin/includes/menu.php:342 wp-admin/my-sites.php:16
 msgid "You do not have sufficient permissions to access this page."
-msgstr "Devi farti autorizzare per accedere a questa pagina."
+msgstr "Non hai permessi sufficienti per accedere a questa pagina."
 
 #: wp-admin/includes/plugin-install.php:217
 msgid "Popular tags"
@@ -10739,7 +10739,7 @@ msgstr "Non sei autorizzato a modificare questa pagina."
 #: wp-admin/includes/post.php:208 wp-admin/includes/post.php:1717
 #: wp-admin/includes/post.php:1721
 msgid "You are not allowed to edit this post."
-msgstr "Non si dispone del permesso per modificare questo articolo."
+msgstr "Non hai il permesso per modificare questo articolo."
 
 #: wp-admin/includes/ajax-actions.php:1617
 msgid "Saving is disabled: %s is currently editing this page."

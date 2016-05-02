@@ -1849,20 +1849,20 @@ class coming_soon_admin_menu{
 			'Booking Calendar'=>array(
 						'image_url'		=>	$this->plugin_url.'images/featured_plugins/Booking_calendar_featured.png',
 						'site_url'		=>	'http://wpdevart.com/wordpress-booking-calendar-plugin/',
-						'title'			=>	'Booking Calendar',
+						'title'			=>	'WordPress Booking Calendar',
 						'description'	=>	'WordPress Booking Calendar plugin is an awesome tool to create a booking system for your website. Create booking calendars in a few minutes.'
 						),	
 			'youtube'=>array(
 						'image_url'		=>	$this->plugin_url.'images/featured_plugins/youtube.png',
 						'site_url'		=>	'http://wpdevart.com/wordpress-youtube-embed-plugin',
 						'title'			=>	'WordPress YouTube Embed',
-						'description'	=>	'YouTube Embed plugin is an convenient tool for adding video to your website. Use YouTube Embed plugin to add YouTube videos in posts/pages, widgets.'
+						'description'	=>	'YouTube Embed plugin is an convenient tool for adding videos to your website. Use YouTube Embed plugin to add YouTube videos in posts/pages, widgets.'
 						),
 			'countdown'=>array(
 						'image_url'		=>	$this->plugin_url.'images/featured_plugins/countdown.jpg',
 						'site_url'		=>	'http://wpdevart.com/wordpress-countdown-plugin/',
 						'title'			=>	'WordPress Countdown plugin',
-						'description'	=>	'WordPress Countdown plugin is an nice tool to create and insert countdown timers into your posts/pages and widgets.'
+						'description'	=>	'WordPress Countdown plugin is an nice tool for creating  countdown timers for posts/pages and widgets.'
 						),
 			'lightbox'=>array(
 						'image_url'		=>	$this->plugin_url.'images/featured_plugins/lightbox.png',
@@ -1885,15 +1885,9 @@ class coming_soon_admin_menu{
 			'poll'=>array(
 						'image_url'		=>	$this->plugin_url.'images/featured_plugins/poll.png',
 						'site_url'		=>	'http://wpdevart.com/wordpress-polls-plugin',
-						'title'			=>	'Poll',
+						'title'			=>	'WordPress Poll Plugin',
 						'description'	=>	'WordPress Polls plugin is an wonderful tool for creating polls and survey forms for your visitors. You can use our polls on widgets, posts and pages.'
-						),
-			'twitter'=>array(
-						'image_url'		=>	$this->plugin_url.'images/featured_plugins/twitter.png',
-						'site_url'		=>	'http://wpdevart.com/wordpress-twitter-plugin',
-						'title'			=>	'Twitter button plus',
-						'description'	=>	'Twitter button plus is nice and useful tool to show Twitter tweet button on your website.'
-						),															
+						),														
 			
 		);
 		?>
