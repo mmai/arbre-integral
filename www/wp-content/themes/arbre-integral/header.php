@@ -53,14 +53,11 @@
 	-->
 
 	<!-- Facebook Open Graph tags. See https://developers.facebook.com/docs/sharing/webmasters -->
-	<!--
-	<meta name="og:title" content="">
+	<meta name="og:title" content="L'Arbre Intégral">
 	<meta property="og:type" content="website">
-	<meta property="og:url" content="">
-	<meta property="og:image" content="">
-	<meta property="og:description" content="">
+	<meta property="og:url" content="http://arbre-integral.net">
+	<meta property="og:image" content="http://arbre-integral.net/wp-content/themes/arbre-integral/img/assets/graine.png">
 	<meta property="og:locale:locale" content="fr_fr">
-	-->
 
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Asap|Crimson+Text|Kite+One|Sanchez">
   <link rel="stylesheet" href='/wp-content/themes/arbre-integral/css/main.css' type='text/css'>
