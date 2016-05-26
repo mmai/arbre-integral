@@ -56,7 +56,6 @@
 	<meta name="og:title" content="L'Arbre Intégral">
 	<meta property="og:type" content="website">
 	<meta property="og:url" content="http://arbre-integral.net">
-	<meta property="og:image" content="http://arbre-integral.net/wp-content/themes/arbre-integral/img/assets/graine.png">
 	<meta property="og:image" content="http://arbre-integral.net/wp-content/themes/arbre-integral/img/assets/graine-fb.png">
   <meta property="og:image-width" content="877">
   <meta property="og:image-height" content="458">
