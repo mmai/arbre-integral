@@ -102,10 +102,10 @@ function wp_paypal_custom_column($column, $post_id) {
             echo get_post_meta($post_id, '_last_name', true);
             break;
         case 'cover' :
-            echo "<a href='aibooks/ArbreIntegral-$edition-couverture.pdf'>ArbreIntegral-$edition-couverture.pdf</a>";
+            echo "<a href='/aibooks/ArbreIntegral-$edition-couverture.pdf'>ArbreIntegral-$edition-couverture.pdf</a>";
             break;
         case 'content' :
-            echo "<a href='aibooks/ArbreIntegral-$edition.pdf'>ArbreIntegral-$edition.pdf</a>";
+            echo "<a href='/aibooks/ArbreIntegral-$edition.pdf'>ArbreIntegral-$edition.pdf</a>";
             break;
         case 'mc_gross' :
             echo get_post_meta($post_id, '_mc_gross', true);

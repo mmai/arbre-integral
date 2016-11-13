@@ -19,7 +19,7 @@ coverage: dev
 build: 
 	modernizr -c modernizr-config.json -d www/wp-content/themes/arbre-integral/
 	sass src/scss/main.scss:www/wp-content/themes/arbre-integral/css/main.css
-	postcss --use autoprefixer --autoprefixer.browser "last 4 version" -o www/wp-content/themes/arbre-integral/css/main.css www/wp-content/themes/arbre-integral/css/main.css
+	postcss --use autoprefixer --autoprefixer.browsers "last 4 version" -o www/wp-content/themes/arbre-integral/css/main.css www/wp-content/themes/arbre-integral/css/main.css
 	NODE_ENV=prod webpack -p
 
 testunit:
