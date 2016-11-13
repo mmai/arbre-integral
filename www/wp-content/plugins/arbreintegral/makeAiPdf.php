@@ -296,13 +296,13 @@ function createCover($id, $svg){
   global $aiBooksSrc;
 
   $pdfFile = $aiBooksDir.'ArbreIntegral-'.$id.'-couverture.pdf';
-  $imgFile = $aiBooksDir.'ArbreIntegral-'.$id.'-couverture.jpg';
+  // $imgFile = $aiBooksDir.'ArbreIntegral-'.$id.'-couverture.jpg';
   if (!file_exists($pdfFile)){
     $svgFile = $aiBooksDir.$id.'.svg';
     file_put_contents($svgFile, $svg);
 
     // create new PDF document
-    $pdf = new TCPDF('P', 'mm', 'A6', true, 'UTF-8', false);
+    $pdf = new TCPDF('L', 'mm', [228, 159], true, 'UTF-8', false);
     $docHeight = 148;
     $docWidth = 104;
 
@@ -328,30 +328,84 @@ function createCover($id, $svg){
 
     // add a page
     $pdf->AddPage();
-    $pdf->SetFillColor(171,208,184);
+    $pdf->SetFillColor(255,255,255);
+    // $pdf->SetFillColor(171,208,184);
     $pdf->Cell(0 , $docHeight * 2 / 3 , '', 0, 0, 'C', true);
 
     $pdf->SetY($docHeight * 2 / 3);
-    $pdf->SetFillColor(0, 0, 0);
+    // $pdf->SetFillColor(0, 0, 0);
     $pdf->Cell(0 , $docHeight / 3 , '', 0, 0, 'C', true);
 
-    $pdf->ImageSVG($aiBooksSrc."ai_typo_arbre.svg", 15, 17, '', 12, '', '', 1, false);
-    $pdf->ImageSVG($aiBooksSrc."ai_typo_integral.svg", 15, 32, '', 12, '', '', 1, false);
+    // **** back ***
+    $pdf->ImageSVG($aiBooksSrc."logo_black.svg", 52.5, 120, '', 10, '', '', 1, false);
 
-    $pdf->ImageSVG($aiBooksSrc."logo_white.svg", 92, 8, '', 10, '', '', 1, false);
+    // **** reliure ***
+    $pdf->ImageSVG($aiBooksSrc."logo_black.svg", 112, 10.3, '', 4, '', '', 1, false);
 
-    $svgSize = 90;
-    $pdf->ImageSVG($svgFile, ($docWidth -$svgSize)/2, 54 , '', '', '', '', 1, false);
+    $centerX = 115;
+    $centerY = 80; 
+    $pdf->StartTransform();
 
-    // $pdf->SetFont('helvetica', '', 8);
-    $pdf->SetXY(15, 50);
-    $pdf->SetFont('sanchez', '', 14);
+    $pdf->Rotate(90, $centerX, $centerY);
+    $pdf->SetFont('sanchez', '', 7.5);
+    $pdf->SetXY(116, 77);
     $pdf->Write(0, 'Donatien Garnier', '', 0, 'L', true, 0, false, false, 0);
 
-    $pdf->SetY(135);
-    $pdf->SetTextColor(250,250,250);
+    $pdf->ImageSVG($aiBooksSrc."ai_typo_arbre.svg", 143, 77.2, '', 3.6, '', '', 1, false);
+    $pdf->ImageSVG($aiBooksSrc."ai_typo_integral.svg", 157, 77.2, '', 3.6, '', '', 1, false);
+
+    $pdf->StopTransform();
+
+    // *** front ****
+    $pdf->ImageSVG($aiBooksSrc."ai_typo_arbre.svg", 132.5, 22, '', 12, '', '', 1, false);
+    $pdf->ImageSVG($aiBooksSrc."ai_typo_integral.svg", 132.5, 37, '', 12, '', '', 1, false);
+
+    $pdf->ImageSVG($aiBooksSrc."logo_black.svg", 207, 10, '', 10, '', '', 1, false);
+
+    $svgSize = 90;
+    // $pdf->ImageSVG($svgFile, ($docWidth -$svgSize)/2, 54 , '', '', '', '', 1, false);
+    $pdf->ImageSVG($svgFile, 125, 60, '', $svgSize, '', '', 1, false);
+
+    // $pdf->SetFont('helvetica', '', 8);
+    $defaultSpacing = $pdf->getFontSpacing();
+    $pdf->SetXY(132.5, 55);
+    $pdf->SetFont('sanchez', '', 14);
+    $pdf->SetFontSpacing(0.10);
+    $pdf->Write(0, 'Donatien Garnier', '', 0, 'L', true, 0, false, false, 0);
+    $pdf->SetFontSpacing($defaultSpacing);
+
+    $pdf->SetXY(162, 140);
+    // $pdf->SetTextColor(250,250,250);
     $pdf->SetFont('sanchez', '', 8);
-    $pdf->Cell(0, 10, 'parcours '.$id, 0, false, 'C', 0, '', 0, false, 'T', 'M');
+    $pdf->Cell(0, 10, 'parcours '.$id, 0, false, 'L', 0, '', 0, false, 'T', 'M');
+
+    // traits
+    $style = array('width' => 0.1, 'dash' => 0, 'color' => array(0, 0, 0));
+    //horizontal coins
+    $pdf->Line(0, 5, 1.5, 5, $style);
+    $pdf->Line(0, 153.5, 1.5, 153.5, $style);
+    $pdf->Line(226.3, 5, 228, 5, $style);
+    $pdf->Line(226.3, 153.5, 228, 153.5, $style);
+
+    //horizontal reliure
+    $pdf->Line(91, 5, 103.5, 5, $style);
+    $pdf->Line(91, 153.5, 103.5, 153.5, $style);
+    $pdf->Line(124.5, 5, 137, 5, $style);
+    $pdf->Line(124.5, 153.5, 137, 153.5, $style);
+
+    //vertical coins
+    //  gauche
+    $pdf->Line(5, 0, 5, 1.7, $style);
+    $pdf->Line(5, 157, 5, 159, $style);
+    //  droite
+    $pdf->Line(223, 0, 223, 1.7, $style);
+    $pdf->Line(223, 157, 223, 159, $style);
+
+    //vertical reliure
+    $pdf->Line(110, 0, 110, 1.7, $style);
+    $pdf->Line(110, 157, 110, 159, $style);
+    $pdf->Line(118, 0, 118, 1.7, $style);
+    $pdf->Line(118, 157, 118, 159, $style);
 
     // ---------------------------------------------------------
 
@@ -359,13 +413,6 @@ function createCover($id, $svg){
     $pdf->Output($pdfFile, 'F');
 
     //Convert to image
-    exec('convert -density 800 '.$pdfFile.' '.$imgFile);
-    //Imagick not available on OVH shared servers
-    // $img = new Imagick();
-    // $img->setResolution(800,800);
-    // $img->readImage($pdfFile);
-    // $img->setImageFormat('jpg');
-    // $img->writeImage($imgFile);
-
+    // exec('convert -density 800 '.$pdfFile.' '.$imgFile);
   }
 }
