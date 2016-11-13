@@ -69,7 +69,7 @@ export function renderPdf(editionId){
                       // ,h("img", {attrs:{border: "0", src: "https://www.sandbox.paypal.com/fr_FR/FR/i/scr/pixel.gif", width:"1", height:"1"}})//XXX Sandbox
 
                       h("input", {attrs:{type: "image", src: "https://www.paypalobjects.com/fr_FR/FR/i/btn/btn_buynowCC_LG.gif", name:"submit", border:"0", alt:"PayPal, le réflexe sécurité pour payer en ligne"}})
-                      ,h("img", {attrs:{border: "0", src: "https://www.paypalobjects.com/fr_FR/FR/i/scr/pixel.gif", width:"1", height:"1"}})
+                      ,h("img", {attrs:{border: "0", src: "https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif", width:"1", height:"1"}})
                     ]),
                 ])
             ])
