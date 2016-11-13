@@ -13,6 +13,10 @@ function wp_paypal_process_ipn() {
         if (WP_PAYPAL_USE_SANDBOX) {
             $paypal_adr = "https://www.sandbox.paypal.com/cgi-bin/webscr";
         }
+
+        /*
+         * XXX marche pas...
+         *
         wp_paypal_debug_log("Checking if IPN response is valid via ".$paypal_adr, true);
         // Get received values from post data
         $validate_ipn = array('cmd' => '_notify-validate');
@@ -49,6 +53,7 @@ function wp_paypal_process_ipn() {
             wp_die( "PayPal IPN Request Failure", "PayPal IPN", array( 'response' => 200 ) );
             return;
         }
+         */
         //process data
         $payment_status = '';
         if (isset($ipn_response['payment_status'])) {
@@ -92,6 +97,10 @@ function wp_paypal_process_ipn() {
         if (isset($ipn_response['last_name'])) {
             $last_name = sanitize_text_field($ipn_response['last_name']);
         }
+        $custom = '';
+        if (isset($ipn_response['custom'])) {
+            $custom = sanitize_text_field($ipn_response['custom']);
+        }
         $mc_gross = '';
         if (isset($ipn_response['mc_gross'])) {
             $mc_gross = sanitize_text_field($ipn_response['mc_gross']);
@@ -132,6 +141,7 @@ function wp_paypal_process_ipn() {
             update_post_meta($post_id, '_txn_id', $txn_id);
             update_post_meta($post_id, '_first_name', $first_name);
             update_post_meta($post_id, '_last_name', $last_name);
+            update_post_meta($post_id, '_edition', $custom);
             update_post_meta($post_id, '_mc_gross', $mc_gross);
             update_post_meta($post_id, '_payment_status', $payment_status);
             wp_paypal_debug_log("Order information updated", true);
