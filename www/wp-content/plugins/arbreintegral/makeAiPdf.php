@@ -388,10 +388,10 @@ function createCover($id, $svg){
     $pdf->Line(226.3, 153.5, 228, 153.5, $style);
 
     //horizontal reliure
-    $pdf->Line(91, 5, 103.5, 5, $style);
-    $pdf->Line(91, 153.5, 103.5, 153.5, $style);
-    $pdf->Line(124.5, 5, 137, 5, $style);
-    $pdf->Line(124.5, 153.5, 137, 153.5, $style);
+    // $pdf->Line(91, 5, 103.5, 5, $style);
+    // $pdf->Line(91, 153.5, 103.5, 153.5, $style);
+    // $pdf->Line(124.5, 5, 137, 5, $style);
+    // $pdf->Line(124.5, 153.5, 137, 153.5, $style);
 
     //vertical coins
     //  gauche
