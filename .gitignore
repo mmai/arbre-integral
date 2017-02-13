@@ -19,6 +19,7 @@ www/wp-content/updraft/
 www/wp-content/wp-cache-config.php
 www/wp-content/plugins/hello.php
 www/wp-content/plugins/arbreintegral/vendor/tcpdf/fonts/
+www/wp-content/plugins/wp-paypal/log.txt
 
 www/readme.html
 www/license.txt
